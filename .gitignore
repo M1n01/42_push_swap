@@ -1,0 +1,9 @@
+*.a
+push_swap
+checker_Mac
+a.out*
+*.txt
+.vscode
+.DS_Store
+*.o
+push_swap_tester
