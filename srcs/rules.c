@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 16:05:10 by minabe            #+#    #+#             */
-/*   Updated: 2022/08/24 11:44:23 by minabe           ###   ########.fr       */
+/*   Updated: 2022/08/25 18:19:51 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,30 @@
 #include "../utils/include/ft_printf.h"
 #include "../include/push_swap.h"
 
-void	swap(int *big, int *small)
-{
-	int	tmp;
+#include <stdio.h>
 
-	tmp = *big;
-	*big = *small;
-	*small = tmp;
+void	swap(t_list *big, t_list *small)
+{
+	int		tmp1;
+	ssize_t	tmp2;
+
+	tmp1 = small->value;
+	tmp2 = small->ordinal;
+	small->value = big->value;
+	small->ordinal = big->ordinal;
+	big->value = tmp1;
+	big->ordinal = tmp2;
 	return ;
 }
 
+
 void	push(t_list *from, t_list *to)
 {
-	from = from->next;
-	list_cpy(from, to);
-	lstdelone_node(from);
+	t_list	*src;
+
+	src = from->next;
+	lstcpy(src, to);
+	lstdelone_node(src);
 	return ;
 }
 
@@ -59,7 +68,6 @@ void	rev_rotate(t_list *stack)
 	head = stack;
 	dest = head->next;
 	src = search_tail(stack);
-
 	src->prev->next = head;
 	head->prev = src->prev;
 	src->prev = head;

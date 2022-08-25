@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 17:49:56 by minabe            #+#    #+#             */
-/*   Updated: 2022/08/23 10:42:28 by minabe           ###   ########.fr       */
+/*   Updated: 2022/08/24 13:51:21 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ void	error(void)
 
 void	safer_free(void *p)
 {
-	free(p);
-	p = NULL;
+	if (p != NULL)
+	{
+		free(p);
+		p = NULL;
+	}
 }

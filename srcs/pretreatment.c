@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 19:05:46 by minabe            #+#    #+#             */
-/*   Updated: 2022/08/23 21:20:21 by minabe           ###   ########.fr       */
+/*   Updated: 2022/08/25 18:44:06 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,24 @@
 
 static size_t	lower_bound(int	*array, int value, size_t size);
 static void		sort(int *array, size_t size);
+static void		int_swap(int *big, int *small);
+
+int	*make_array(int ac, char *av[])
+{
+	int	i;
+	int	*array;
+
+	array = malloc(sizeof(int) * (ac - 1));
+	if (array == NULL)
+		error();
+	i = 0;
+	while (i < ac - 1)
+	{
+		array[i] = ft_atoi(av[i + 1]);
+		i++;
+	}
+	return (array);
+}
 
 void	coordinate_compression(int *array, size_t *coordinate, size_t size)
 {
@@ -48,11 +66,21 @@ void	sort(int *array, size_t size)
 		while (j < size)
 		{
 			if (array[i] > array[j])
-				swap(array + i, array + j);
+				int_swap(array + i, array + j);
 			j++;
 		}
 		i++;
 	}
+	return ;
+}
+
+static void	int_swap(int *big, int *small)
+{
+	int	tmp;
+
+	tmp = *big;
+	*big = *small;
+	*small = tmp;
 	return ;
 }
 

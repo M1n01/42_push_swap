@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 10:34:45 by minabe            #+#    #+#             */
-/*   Updated: 2022/08/24 11:46:42 by minabe           ###   ########.fr       */
+/*   Updated: 2022/08/25 18:43:58 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,77 +15,74 @@
 #include "../include/push_swap.h"
 
 void	push_swap(t_list *stack1, t_list *stack2, size_t size);
-void	rev_rotate(t_list *stack);
+void	pre_pushb(t_list *stack, t_list *find);
 
-void	rotate(t_list *stack);
-t_list	*search_value(t_list *stack, ssize_t value);
-t_list	*lstdelone_node(t_list *trash);
-void	list_cpy(t_list *head, t_list *src);
-void	lstadd_last(t_list *head, t_list *src);
 void	print_list(t_list *stack);
 
 #include <stdio.h>
 
 int	main(int ac, char *av[])
 {
-	int		i;
 	int		*array;
 	size_t	*coordinate;
 	t_list	*stack1;
 	t_list	*stack2;
 
-	array = malloc(sizeof(int) * (ac - 1));
-	if (array == NULL)
-		error();
 	coordinate = malloc(sizeof(size_t) * (ac - 1));
 	if (coordinate == NULL)
 		error();
-	i = 0;
-	while (i < ac - 1)
-	{
-		array[i] = ft_atoi(av[i + 1]);
-		i++;
-	}
+	array = make_array(ac, av);
 	coordinate_compression(array, coordinate, ac - 1);
-	puts("main1");
-	stack1 = make_stack1(array, coordinate, ac - 1);
-	puts("main2");
-	// stack2 = make_stack2();
+	stack1 = make_stack(array, coordinate, ac - 1);
 	stack2 = init_stack();
 	push_swap(stack1, stack2, ac - 1);
+	// system("leaks -q push_swap");
 	return (0);
 }
 
 void	push_swap(t_list *stack1, t_list *stack2, size_t size)
 {
-	size_t	i = 0;
+	size_t	i;
+	size_t	median;
+	t_list	*find;
 
-	while (i <= 1)
+	median = size / 2;
+	i = 1;
+	while (i <= median)
 	{
-		puts("~~~~~~stack1~~~~~~");
-		print_list(stack1);
-		puts("~~~~~~stack2~~~~~~");
-		print_list(stack2);
-		// rev_rotate(stack1);
+		find = search_value(stack1, median - i);
+		pre_pushb(stack1, find);
+		push(stack1, stack2);
+		ft_printf("pb\n");
 		i++;
 	}
-	printf("size: %zu\n", size);
 	return ;
 }
 
-t_list	*search_value(t_list *stack, ssize_t value)
+void	pre_pushb(t_list *stack, t_list *find)
 {
+	t_list	*tail;
 	t_list	*head;
 
 	head = stack;
-	puts("search_value");
-	while (stack->next != head)
+	tail = search_tail(stack);
+	if (find - head <= tail - find)
 	{
-		if (stack->ordinal == value)
-			return (stack);
-		stack = stack->next;
+		while (head->next != find)
+		{
+			rotate(stack);
+			ft_printf("ra\n");
+		}
 	}
-	return (NULL);
+	else
+	{
+		while (head->next != find)
+		{
+			rev_rotate(stack);
+			ft_printf("rra\n");
+		}
+	}
+	return ;
 }
 
 void	print_list(t_list *stack)
@@ -97,8 +94,7 @@ void	print_list(t_list *stack)
 	while (stack->next != head)
 	{
 		stack = stack->next;
-		printf("%d ", stack->value);
-		printf("%zd\n", stack->ordinal);
+		printf("%d %zd\n", stack->value, stack->ordinal);
 	}
 	stack = stack->next;
 	return ;
