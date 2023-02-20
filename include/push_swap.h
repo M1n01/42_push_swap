@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 16:44:37 by minabe            #+#    #+#             */
-/*   Updated: 2022/08/25 18:43:28 by minabe           ###   ########.fr       */
+/*   Updated: 2023/02/18 13:37:12 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 
+// 0 2 1 3 4ってな感じで最初に番兵ノードがきやす
 typedef struct s_list
 {
 	int				value;
@@ -24,19 +25,23 @@ typedef struct s_list
 	struct s_list	*prev;
 }				t_list;
 
+t_list	*make_stack(int ac, char *av[]);
+int		*make_array(int ac, char *av[]);
+ssize_t	*compression(int *array, size_t	size);
 t_list	*init_stack(void);
 t_list	*search_tail(t_list	*stack);
-int		*make_array(int ac, char *av[]);
-void	coordinate_compression(int *array, size_t *coordinate, size_t size);
-t_list	*make_stack(int *array, size_t *coordinate, size_t size);
 void	swap(t_list *big, t_list *small);
 void	push(t_list *from, t_list *to);
 void	rotate(t_list *stack);
 void	rev_rotate(t_list *stack);
+void	move_find_to_second(t_list *stack, t_list *find);
+void	phase1(t_list *stack1, t_list *stack2, size_t value);
 t_list	*lstdelone_node(t_list *trash);
 void	lstcpy(t_list *src, t_list *dest);
+t_list	*search_smaller(t_list *stack, ssize_t value);
 t_list	*search_value(t_list *stack, ssize_t value);
-void	error(void);
+void	malloc_error(void *p);
 void	safer_free(void *p);
+void	push_swap(t_list *stack1, t_list *stack2, size_t size);
 
 #endif

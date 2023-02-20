@@ -6,11 +6,11 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/20 20:45:09 by minabe            #+#    #+#             */
-/*   Updated: 2022/08/20 20:58:19 by minabe           ###   ########.fr       */
+/*   Updated: 2022/10/23 20:31:02 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/ft_printf.h"
+#include "ft_printf.h"
 
 int	ft_putchar(char c)
 {

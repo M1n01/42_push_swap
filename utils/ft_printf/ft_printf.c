@@ -6,11 +6,11 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 09:08:27 by minabe            #+#    #+#             */
-/*   Updated: 2022/08/20 20:47:09 by minabe           ###   ########.fr       */
+/*   Updated: 2022/10/23 20:30:47 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/ft_printf.h"
+#include "ft_printf.h"
 
 static int	put_conv(char *iter, va_list *ap);
 

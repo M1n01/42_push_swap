@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 08:53:25 by minabe            #+#    #+#             */
-/*   Updated: 2022/08/25 19:00:45 by minabe           ###   ########.fr       */
+/*   Updated: 2023/02/18 13:33:50 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,24 @@
 
 static void	lstadd_tail(t_list *stack, int value, ssize_t coodinate);
 
-t_list	*make_stack(int *array, size_t *coordinate, size_t size)
+t_list	*make_stack(int ac, char *av[])
 {
-	size_t	i;
+	int		*array;
+	int	i;
+	ssize_t	*coordinate;
 	t_list	*stack;
 
+	array = make_array(ac, av);
+	coordinate = compression(array, ac - 1);
 	stack = init_stack();
 	i = 0;
-	while (i < size)
+	while (i < ac - 1)
 	{
 		lstadd_tail(stack, array[i], coordinate[i]);
 		i++;
 	}
+	free(array);
+	free(coordinate);
 	return (stack);
 }
 
@@ -36,7 +42,7 @@ t_list	*init_stack(void)
 
 	stack = malloc(sizeof(t_list));
 	if (stack == NULL)
-		error();
+		malloc_error(stack);
 	head = stack;
 	stack->prev = head;
 	stack->value = 0;
@@ -55,7 +61,7 @@ static void	lstadd_tail(t_list *stack, int value, ssize_t coodinate)
 	tail = search_tail(stack);
 	new = malloc(sizeof(t_list));
 	if (new == NULL)
-		error();
+		malloc_error(new);
 	new->value = value;
 	new->ordinal = coodinate;
 	new->next = head;
@@ -64,4 +70,3 @@ static void	lstadd_tail(t_list *stack, int value, ssize_t coodinate)
 	head->prev = new;
 	return ;
 }
-

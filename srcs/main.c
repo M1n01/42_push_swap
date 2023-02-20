@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rules_utils.c                                      :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/24 10:54:43 by minabe            #+#    #+#             */
-/*   Updated: 2022/10/23 20:29:12 by minabe           ###   ########.fr       */
+/*   Created: 2022/08/23 10:34:45 by minabe            #+#    #+#             */
+/*   Updated: 2023/02/18 13:36:11 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,20 @@
 #include "../utils/ft_printf/ft_printf.h"
 #include "../include/push_swap.h"
 
-t_list	*lstdelone_node(t_list *trash)
+#include <stdio.h>
+
+int	main(int ac, char *av[])
 {
-	t_list 	*prev;
+	t_list	*stack1;
+	t_list	*stack2;
 
-	prev = trash->prev;
-	trash->next->prev = prev;
-	prev->next = trash->next;
-	safer_free(trash);
-	return (prev->next);
-}
-
-void	lstcpy(t_list *src, t_list *dest)
-{
-	t_list	*new;
-
-	new = malloc(sizeof(t_list));
-	if (new == NULL)
-		malloc_error(new);
-	new->value = src->value;
-	new->ordinal = src->ordinal;
-	new->next = dest->next;
-	new->prev = dest;
-	dest->next->prev = new;
-	dest->next = new;
-	return ;
+	stack1 = make_stack(ac, av);
+	printf("stack1: ");
+	for (int i = 0; i < ac; i++)
+		printf("%zd ", stack1[i].ordinal);
+	puts("");
+	stack2 = init_stack();
+	push_swap(stack1, stack2, ac - 1);
+	// system("leaks -q push_swap");
+	return (0);
 }

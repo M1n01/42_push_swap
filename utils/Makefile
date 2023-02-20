@@ -1,9 +1,10 @@
 NAME = libftprintf.a
 
 CC = cc
-INCDIR = -I./include
-SRCDIR = .
-CFLAGS = -Wall -Wextra -Werror $(INCDIR)
+INCDIR = ./ft_printf  ./libft
+CFLAGS = -Wall -Wextra -Werror $(addprefix -I,$(INCDIR))
+
+SRCDIR = ./ft_printf ./libft
 
 SRCS = $(shell find $(SRCDIR) -name "*.c" -type f | xargs)
 
@@ -21,5 +22,3 @@ fclean: clean
 		$(RM) $(NAME)
 
 re: fclean all
-
-.PHONY: all clean fclean re

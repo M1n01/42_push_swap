@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/17 16:01:50 by minabe            #+#    #+#             */
-/*   Updated: 2022/08/20 20:54:26 by minabe           ###   ########.fr       */
+/*   Created: 2022/04/05 15:14:49 by minabe            #+#    #+#             */
+/*   Updated: 2022/10/23 20:31:42 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/libft.h"
+#ifndef LIBFT_H
+# define LIBFT_H
+# include <stdlib.h>
+# include <limits.h>
 
-size_t	ft_strlen(const char *str)
-{
-	size_t	len;
+int		ft_isdigit(int c);
+int		ft_atoi(const char *str);
+size_t	ft_strlen(const char *str);
+void	*ft_memcpy(void *dst, const void *src, size_t n);
 
-	if (str == NULL)
-		return (0);
-	len = 0;
-	while (str[len] != '\0')
-		len++;
-	return (len);
-}
+#endif

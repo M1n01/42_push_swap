@@ -6,12 +6,14 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 10:57:14 by minabe            #+#    #+#             */
-/*   Updated: 2022/08/20 22:28:32 by minabe           ###   ########.fr       */
+/*   Updated: 2022/10/23 20:35:31 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/libft.h"
-#include "../include/push_swap.h"
+#include "libft.h"
+#include "../ft_printf/ft_printf.h"
+
+static void	error(void);
 
 int	ft_atoi(const char *str)
 {
@@ -38,4 +40,11 @@ int	ft_atoi(const char *str)
 	}
 	nbr *= sign;
 	return ((int)nbr);
+}
+
+static void	error(void)
+{
+	ft_printf("Error.\n");
+	exit(1);
+	return ;
 }

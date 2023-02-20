@@ -6,12 +6,12 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 16:05:10 by minabe            #+#    #+#             */
-/*   Updated: 2022/08/25 18:19:51 by minabe           ###   ########.fr       */
+/*   Updated: 2022/10/24 10:02:46 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../utils/include/libft.h"
-#include "../utils/include/ft_printf.h"
+#include "../utils/libft/libft.h"
+#include "../utils/ft_printf/ft_printf.h"
 #include "../include/push_swap.h"
 
 #include <stdio.h>
@@ -29,7 +29,6 @@ void	swap(t_list *big, t_list *small)
 	big->ordinal = tmp2;
 	return ;
 }
-
 
 void	push(t_list *from, t_list *to)
 {
