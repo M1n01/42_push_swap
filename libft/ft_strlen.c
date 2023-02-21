@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c 00-14-56-233.c                              :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/23 10:34:45 by minabe            #+#    #+#             */
-/*   Updated: 2023/02/22 00:29:47 by minabe           ###   ########.fr       */
+/*   Created: 2022/03/17 16:01:50 by minabe            #+#    #+#             */
+/*   Updated: 2023/02/21 23:55:20 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
-#include "../include/utils.h"
-#include "../include/push_swap.h"
 
-#include <stdio.h>
-
-int	main(int ac, char *av[])
+size_t	ft_strlen(const char *str)
 {
-	t_list	*stack1;
-	t_list	*stack2;
+	size_t	len;
 
-	stack1 = make_stack(ac, av);
-	printf("stack1: ");
-	for (int i = 0; i < ac; i++)
-		printf("%zd ", stack1[i].ordinal);
-	puts("");
-	stack2 = init_stack();
-	push_swap(stack1, stack2, ac - 1);
-	// system("leaks -q push_swap");
-	return (0);
+	if (str == NULL)
+		return (0);
+	len = 0;
+	while (str[len] != '\0')
+		len++;
+	return (len);
 }

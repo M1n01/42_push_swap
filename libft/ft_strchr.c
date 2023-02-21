@@ -1,20 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/05 15:43:38 by minabe            #+#    #+#             */
-/*   Updated: 2022/10/23 20:30:32 by minabe           ###   ########.fr       */
+/*   Created: 2023/02/21 23:45:56 by minabe            #+#    #+#             */
+/*   Updated: 2023/02/21 23:58:44 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
 
-int	ft_isdigit(int c)
+char	*ft_strchr(const char *s, int c)
 {
-	if ('0' <= c && c <= '9')
-		return (1);
-	return (0);
+	size_t	i;
+	char	*str;
+	char	to_find;
+
+	if (s == NULL)
+		return (NULL);
+	str = (char *)s;
+	to_find = (char)c;
+	i = 0;
+	if (to_find == '\0')
+	{
+		while (s[i] != '\0')
+			i++;
+		return (str + i);
+	}
+	while (s[i] != '\0')
+	{
+		if (s[i] == to_find)
+			return (str + i);
+		i++;
+	}
+	return (NULL);
 }

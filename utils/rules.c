@@ -6,12 +6,12 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 16:05:10 by minabe            #+#    #+#             */
-/*   Updated: 2022/10/24 10:02:46 by minabe           ###   ########.fr       */
+/*   Updated: 2023/02/22 00:40:31 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../utils/libft/libft.h"
-#include "../utils/ft_printf/ft_printf.h"
+#include "../include/libft.h"
+#include "../include/utils.h"
 #include "../include/push_swap.h"
 
 #include <stdio.h>

@@ -1,33 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c 00-14-56-233.c                              :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/23 10:34:45 by minabe            #+#    #+#             */
-/*   Updated: 2023/02/22 00:29:47 by minabe           ###   ########.fr       */
+/*   Created: 2022/04/05 15:43:38 by minabe            #+#    #+#             */
+/*   Updated: 2023/02/21 23:50:32 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
-#include "../include/utils.h"
-#include "../include/push_swap.h"
 
-#include <stdio.h>
-
-int	main(int ac, char *av[])
+int	ft_isdigit(int c)
 {
-	t_list	*stack1;
-	t_list	*stack2;
-
-	stack1 = make_stack(ac, av);
-	printf("stack1: ");
-	for (int i = 0; i < ac; i++)
-		printf("%zd ", stack1[i].ordinal);
-	puts("");
-	stack2 = init_stack();
-	push_swap(stack1, stack2, ac - 1);
-	// system("leaks -q push_swap");
+	if ('0' <= c && c <= '9')
+		return (1);
 	return (0);
 }

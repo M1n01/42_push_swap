@@ -3,28 +3,32 @@ NAME = push_swap
 CC = cc
 INCDIR = ./include
 SRCDIR = ./srcs
+UTILDIR = ./utils
+LIBDIR = ./utils
 
 CFLAGS = -Wall -Wextra -Werror $(addprefix -I,$(INCDIR))
 
 INC = $(shell find $(INCDIR) -name "*.h" -type f | xargs)
 SRCS = $(shell find $(SRCDIR) -name "*.c" -type f | xargs)
-UTILS = $(shell find ./utils -name "*.c" -type f | xargs)
-LIB = ./utils/libftprintf.a
+UTILS = $(shell find $(UTILDIR) -name "*.c" -type f | xargs)
+LIBFT = $(shell find $(LIBDIR) -name "*.c" -type f | xargs)
+
+LIB = ./libft/libft.a
 
 OBJS = $(SRCS:%.c=%.o)
 UTILS_OBJ = $(UTILS:%.c=%.o)
 
-$(NAME): $(OBJS)
-		$(MAKE) -C ./utils
+$(NAME): $(OBJS) $(UTILS_OBJ)
+		$(MAKE) -C ./libft
 		$(CC) $(CFLAGS) $(SRCS) $(LIB) -o $(NAME)
 
 all: $(NAME)
 
 clean:
-		$(RM) $(OBJS) $(B_OBJS) $(UTILS_OBJ)
+		$(RM) $(OBJS) $(B_OBJS) $(UTILS_OBJ) $(LIBFT)
 
 fclean: clean
-		$(RM) $(NAME)
+		$(RM) $(NAME) $(LIB)
 
 re: fclean all
 

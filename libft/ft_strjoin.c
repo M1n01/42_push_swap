@@ -1,27 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/18 17:49:56 by minabe            #+#    #+#             */
-/*   Updated: 2022/10/23 23:17:48 by minabe           ###   ########.fr       */
+/*   Created: 2022/05/19 17:17:04 by minabe            #+#    #+#             */
+/*   Updated: 2023/02/22 00:27:17 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../utils/libft/libft.h"
-#include "../utils/ft_printf/ft_printf.h"
-#include "../include/push_swap.h"
+#include "../include/libft.h"
 
-void	malloc_error(void *p)
+static void	safer_free(void *p);
+
+char	*ft_strjoin(char *s1, char *s2)
 {
-	safer_free(p);
-	ft_printf("Error\n");
-	exit(1);
+	size_t	len1;
+	size_t	len2;
+	char	*str;
+
+	if (s1 == NULL || s2 == NULL)
+		return (NULL);
+	len1 = ft_strlen(s1);
+	len2 = ft_strlen(s2);
+	str = malloc(sizeof(char) * (len1 + len2 + 1));
+	if (str == NULL)
+		return (NULL);
+	ft_strlcpy(str, s1, len1 + 1);
+	ft_strlcpy(str + len1, s2, len2 + 1);
+	safer_free(s1);
+	return (str);
 }
 
-void	safer_free(void *p)
+static void	safer_free(void *p)
 {
 	if (p != NULL)
 	{

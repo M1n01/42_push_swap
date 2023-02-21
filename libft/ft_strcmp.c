@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/10 17:09:28 by minabe            #+#    #+#             */
-/*   Updated: 2022/06/23 22:56:47 by minabe           ###   ########.fr       */
+/*   Created: 2023/02/20 17:09:35 by minabe            #+#    #+#             */
+/*   Updated: 2023/02/21 23:54:25 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-# include <stdarg.h>
-# include <limits.h>
-# include <unistd.h>
+#include "../include/libft.h"
 
-int	ft_printf(const char *format, ...);
-int	putnbr_hex(unsigned long long nbr, char conv);
-int	put_str(char *s);
-int	put_ptr(unsigned long long ptr);
-int	ft_putchar(char c);
-int	ft_putnbr(long long n);
+int	ft_strcmp(char *str1, char *str2)
+{
+	size_t	i;
+	size_t	len;
 
-#endif
+	if (ft_strlen(str1) < ft_strlen(str2))
+		len = ft_strlen(str1);
+	else
+		len = ft_strlen(str2);
+	i = 0;
+	while (i < len)
+	{
+		if (str1[i] != str2[i])
+			return (str1[i] - str2[i]);
+		i++;
+	}
+	return (0);
+}

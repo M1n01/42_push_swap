@@ -6,12 +6,11 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 10:57:14 by minabe            #+#    #+#             */
-/*   Updated: 2022/10/23 20:35:31 by minabe           ###   ########.fr       */
+/*   Updated: 2023/02/21 23:50:25 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "../ft_printf/ft_printf.h"
+#include "../include/libft.h"
 
 static void	error(void);
 

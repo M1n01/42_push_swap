@@ -6,13 +6,15 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/19 09:08:27 by minabe            #+#    #+#             */
-/*   Updated: 2022/10/23 20:30:47 by minabe           ###   ########.fr       */
+/*   Updated: 2023/02/22 00:07:55 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../include/libft.h"
 
 static int	put_conv(char *iter, va_list *ap);
+static int	put_str(char *s);
+static int	put_ptr(unsigned long long ptr);
 
 int	ft_printf(const char *format, ...)
 {
@@ -41,7 +43,7 @@ int	ft_printf(const char *format, ...)
 	return (res);
 }
 
-int	putnbr_hex(unsigned long long nbr, char conv)
+static int	putnbr_hex(unsigned long long nbr, char conv)
 {
 	int	res;
 
@@ -76,4 +78,30 @@ static int	put_conv(char *iter, va_list *ap)
 	else if (*iter == '%')
 		return (ft_putchar(*iter));
 	return (0);
+}
+
+static int	put_str(char *s)
+{
+	size_t	i;
+	int		res;
+
+	if (!s)
+		return (put_str("(null)"));
+	i = 0;
+	res = 0;
+	while (s[i] != '\0')
+	{
+		res += ft_putchar(s[i]);
+		i++;
+	}
+	return (res);
+}
+
+static int	put_ptr(unsigned long long ptr)
+{
+	int	res;
+
+	res = 0;
+	res += put_str("0x");
+	return (res + putnbr_hex(ptr, 'x'));
 }

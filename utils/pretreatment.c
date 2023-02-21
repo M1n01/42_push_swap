@@ -6,12 +6,12 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 19:05:46 by minabe            #+#    #+#             */
-/*   Updated: 2023/02/18 13:37:49 by minabe           ###   ########.fr       */
+/*   Updated: 2023/02/22 00:42:38 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../utils/libft/libft.h"
-#include "../utils/ft_printf/ft_printf.h"
+#include "../include/libft.h"
+#include "../include/utils.h"
 #include "../include/push_swap.h"
 
 static void		sort(int *array, size_t size);

@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/17 16:01:50 by minabe            #+#    #+#             */
-/*   Updated: 2022/10/23 20:31:13 by minabe           ###   ########.fr       */
+/*   Created: 2022/08/18 17:49:56 by minabe            #+#    #+#             */
+/*   Updated: 2023/02/22 00:42:45 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/libft.h"
+#include "../include/utils.h"
+#include "../include/push_swap.h"
 
-size_t	ft_strlen(const char *str)
+void	malloc_error(void *p)
 {
-	size_t	len;
+	safer_free(p);
+	ft_printf("Error\n");
+	exit(1);
+}
 
-	if (str == NULL)
-		return (0);
-	len = 0;
-	while (str[len] != '\0')
-		len++;
-	return (len);
+void	safer_free(void *p)
+{
+	if (p != NULL)
+	{
+		free(p);
+		p = NULL;
+	}
 }

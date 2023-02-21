@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/05 15:14:49 by minabe            #+#    #+#             */
-/*   Updated: 2022/10/23 20:31:42 by minabe           ###   ########.fr       */
+/*   Created: 2022/05/19 17:17:04 by minabe            #+#    #+#             */
+/*   Updated: 2023/02/21 23:58:37 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
-# include <stdlib.h>
-# include <limits.h>
+#include "../include/libft.h"
 
-int		ft_isdigit(int c);
-int		ft_atoi(const char *str);
-size_t	ft_strlen(const char *str);
-void	*ft_memcpy(void *dst, const void *src, size_t n);
-
-#endif
+int	ft_putchar(char c)
+{
+	return (write(1, &c, 1));
+}
