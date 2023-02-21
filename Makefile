@@ -11,7 +11,6 @@ CFLAGS = -Wall -Wextra -Werror $(addprefix -I,$(INCDIR))
 INC = $(shell find $(INCDIR) -name "*.h" -type f | xargs)
 SRCS = $(shell find $(SRCDIR) -name "*.c" -type f | xargs)
 UTILS = $(shell find $(UTILDIR) -name "*.c" -type f | xargs)
-LIBFT = $(shell find $(LIBDIR) -name "*.c" -type f | xargs)
 
 LIB = ./libft/libft.a
 
@@ -20,12 +19,12 @@ UTILS_OBJ = $(UTILS:%.c=%.o)
 
 $(NAME): $(OBJS) $(UTILS_OBJ)
 		$(MAKE) -C ./libft
-		$(CC) $(CFLAGS) $(SRCS) $(LIB) -o $(NAME)
+		$(CC) $(CFLAGS) $(SRCS) $(UTILS) $(LIB) -o $(NAME)
 
 all: $(NAME)
 
 clean:
-		$(RM) $(OBJS) $(B_OBJS) $(UTILS_OBJ) $(LIBFT)
+		$(RM) $(OBJS) $(B_OBJS) $(UTILS_OBJ) $(LIBFT_OBJ)
 
 fclean: clean
 		$(RM) $(NAME) $(LIB)

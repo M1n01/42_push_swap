@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 19:05:46 by minabe            #+#    #+#             */
-/*   Updated: 2023/02/22 00:42:38 by minabe           ###   ########.fr       */
+/*   Updated: 2023/02/22 00:53:35 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 static void		sort(int *array, size_t size);
 static void		int_swap(int *big, int *small);
 static void		rank(int *array, int *array_cp, ssize_t *coordinate, size_t size);
-
 
 int	*make_array(int ac, char *av[])
 {

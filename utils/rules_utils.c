@@ -6,12 +6,12 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:54:43 by minabe            #+#    #+#             */
-/*   Updated: 2022/10/23 20:29:12 by minabe           ###   ########.fr       */
+/*   Updated: 2023/02/22 00:55:06 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../utils/libft/libft.h"
-#include "../utils/ft_printf/ft_printf.h"
+#include "../include/libft.h"
+#include "../include/utils.h"
 #include "../include/push_swap.h"
 
 t_list	*lstdelone_node(t_list *trash)
@@ -39,4 +39,11 @@ void	lstcpy(t_list *src, t_list *dest)
 	dest->next->prev = new;
 	dest->next = new;
 	return ;
+}
+
+t_list	*search_tail(t_list	*stack)
+{
+	while (stack->next->ordinal != -1)
+		stack = stack->next;
+	return (stack);
 }
