@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 00:11:08 by minabe            #+#    #+#             */
-/*   Updated: 2023/02/22 00:33:21 by minabe           ###   ########.fr       */
+/*   Updated: 2023/02/23 22:16:29 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		*make_array(int ac, char *av[]);
 ssize_t	*compression(int *array, size_t	size);
 t_list	*init_stack(void);
 t_list	*search_tail(t_list	*stack);
-void	swap(t_list *big, t_list *small);
+void	swap(t_list *stack);
 void	push(t_list *from, t_list *to);
 void	rotate(t_list *stack);
 void	rev_rotate(t_list *stack);

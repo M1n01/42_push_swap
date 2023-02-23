@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:54:43 by minabe            #+#    #+#             */
-/*   Updated: 2023/02/22 00:55:06 by minabe           ###   ########.fr       */
+/*   Updated: 2023/02/23 22:23:22 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 t_list	*lstdelone_node(t_list *trash)
 {
-	t_list 	*prev;
+	t_list	*prev;
 
 	prev = trash->prev;
 	trash->next->prev = prev;

@@ -24,7 +24,8 @@ $(NAME): $(OBJS) $(UTILS_OBJ)
 all: $(NAME)
 
 clean:
-		$(RM) $(OBJS) $(B_OBJS) $(UTILS_OBJ) $(LIBFT_OBJ)
+		$(MAKE) clean -C ./libft
+		$(RM) $(OBJS) $(B_OBJS) $(UTILS_OBJ)
 
 fclean: clean
 		$(RM) $(NAME) $(LIB)
@@ -35,7 +36,7 @@ debug: CFLAGS += -g -fsanitize=address,leak
 debug: re
 
 norm:
-		@norminette -R CheckDefine $(INC)
 		@norminette -R CheckForbiddenSourceHeader $(SRCS) $(B_SRCS) $(UTILS)
+		@norminette -R CheckDefine $(INC)
 
 .PHONY: all clean fclean re bonus norm debug

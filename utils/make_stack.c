@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 08:53:25 by minabe            #+#    #+#             */
-/*   Updated: 2023/02/18 13:33:50 by minabe           ###   ########.fr       */
+/*   Updated: 2023/02/23 22:11:10 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	lstadd_tail(t_list *stack, int value, ssize_t coodinate);
 
 t_list	*make_stack(int ac, char *av[])
 {
-	int		*array;
+	int	*array;
 	int	i;
 	ssize_t	*coordinate;
 	t_list	*stack;

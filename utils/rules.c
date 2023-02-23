@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 16:05:10 by minabe            #+#    #+#             */
-/*   Updated: 2023/02/22 00:40:31 by minabe           ###   ########.fr       */
+/*   Updated: 2023/02/23 22:17:42 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,23 @@
 
 #include <stdio.h>
 
-void	swap(t_list *big, t_list *small)
+void	swap(t_list *stack)
 {
+	t_list	*big;
+	t_list	*small;
 	int		tmp1;
 	ssize_t	tmp2;
 
+	if (stack->next->ordinal > stack->next->next->ordinal)
+	{
+		small = stack->next->next;
+		big = stack->next;
+	}
+	else
+	{
+		small = stack->next;
+		big = stack->next->next;
+	}
 	tmp1 = small->value;
 	tmp2 = small->ordinal;
 	small->value = big->value;
