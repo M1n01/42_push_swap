@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 16:44:37 by minabe            #+#    #+#             */
-/*   Updated: 2023/02/23 21:55:26 by minabe           ###   ########.fr       */
+/*   Updated: 2023/02/24 17:09:15 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,17 @@
 # include <limits.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdbool.h>
 # include "./libft.h"
 # include "./utils.h"
+
+# define LIMIT_LESS6 12
+# define LIMIT_OVER6 30
 
 #include <stdio.h>
 
 void	push_swap(t_list *stack1, t_list *stack2, size_t size);
-void	command1(t_list *stack, char *str);
-void	command2(t_list *stack1, t_list *stack2, char *str);
+void	command1(t_list *stack, int command);
+void	command2(t_list *stack1, t_list *stack2, int command);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 08:53:25 by minabe            #+#    #+#             */
-/*   Updated: 2023/02/23 22:11:10 by minabe           ###   ########.fr       */
+/*   Updated: 2023/02/24 17:19:57 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,16 @@ static void	lstadd_tail(t_list *stack, int value, ssize_t coodinate)
 	tail->next = new;
 	head->prev = new;
 	return ;
+}
+
+t_tool	*init_tool()
+{
+	t_tool	*tool;
+
+	tool = malloc(sizeof(t_tool));
+	if (!tool)
+		malloc_error(tool);
+	tool->ans = NULL;
+	tool->turn = 0;
+	return (tool);
 }

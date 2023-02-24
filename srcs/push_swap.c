@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 18:29:32 by minabe            #+#    #+#             */
-/*   Updated: 2023/02/23 21:55:31 by minabe           ###   ########.fr       */
+/*   Updated: 2023/02/24 17:31:17 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@
 
 void	printList(t_list *stack);
 
-void	set_stack(t_list *stack1, t_list *stack2, size_t n);
-size_t	count_rotate(t_list *stack, ssize_t n);
-size_t	count_revrotate(t_list *stack, ssize_t n);
+static void		set_stack(t_list *stack1, t_list *stack2, size_t n);
+static size_t	count_rotate(t_list *stack, ssize_t n);
+static size_t	count_revrotate(t_list *stack, ssize_t n);
 
 void	push_swap(t_list *stackA, t_list *stackB, size_t size)
 {
-	// size_t	j;
-	// t_list	*find;
+	t_tool	*tool;
 
+	tool = init_tool();
 	puts("~~~stackA~~~");
 	printList(stackA);
 	puts("~~~stackB~~~");
@@ -33,7 +33,7 @@ void	push_swap(t_list *stackA, t_list *stackB, size_t size)
 	set_stack(stackA, stackB, size / 2);
 	if (size <= 6)
 	{
-		sort6_or_less(stackA, stackB);
+		sort6_or_less(stackA, stackB, tool, 0);
 		return ;
 	}
 	// dfs(stackA, stackB);
@@ -41,10 +41,11 @@ void	push_swap(t_list *stackA, t_list *stackB, size_t size)
 	printList(stackA);
 	puts("~~~stackB~~~");
 	printList(stackB);
+	// printf("%p", tool);
 	return ;
 }
 
-void	set_stack(t_list *stackA, t_list *stackB, size_t n)
+static void	set_stack(t_list *stackA, t_list *stackB, size_t n)
 {
 	size_t	i;
 	size_t	step;
@@ -57,7 +58,7 @@ void	set_stack(t_list *stackA, t_list *stackB, size_t n)
 			step = count_rotate(stackA, n - 1);
 			while (step > 0)
 			{
-				command1(stackA, "ra");
+				command1(stackA, RA);
 				step--;
 			}
 		}
@@ -66,17 +67,17 @@ void	set_stack(t_list *stackA, t_list *stackB, size_t n)
 			step = count_revrotate(stackA, n - 1);
 			while (step > 0)
 			{
-				command1(stackA, "rra");
+				command1(stackA, RRA);
 				step--;
 			}
 		}
-		command2(stackA, stackB, "pb");
+		command2(stackA, stackB, PB);
 		i++;
 	}
 }
 
 // scopeでやるかポインタでやるか考える
-size_t	count_rotate(t_list *stack, ssize_t n)
+static size_t	count_rotate(t_list *stack, ssize_t n)
 {
 	size_t	step;
 
@@ -91,7 +92,7 @@ size_t	count_rotate(t_list *stack, ssize_t n)
 }
 
 // scopeでやるかポインタでやるか考える
-size_t	count_revrotate(t_list *stack, ssize_t n)
+static size_t	count_revrotate(t_list *stack, ssize_t n)
 {
 	size_t	step;
 
