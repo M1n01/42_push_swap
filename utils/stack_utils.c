@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rules_utils.c                                      :+:      :+:    :+:   */
+/*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/24 10:54:43 by minabe            #+#    #+#             */
-/*   Updated: 2023/03/08 09:55:57 by minabe           ###   ########.fr       */
+/*   Created: 2023/02/26 17:50:21 by minabe            #+#    #+#             */
+/*   Updated: 2023/03/08 12:18:32 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,26 @@
 #include "../include/utils.h"
 #include "../include/push_swap.h"
 
-t_list	*lstdelone_node(t_list *trash)
+size_t	stack_size(t_list *stack)
 {
-	t_list	*prev;
+	size_t	len;
 
-	prev = trash->prev;
-	trash->next->prev = prev;
-	prev->next = trash->next;
-	safer_free(trash);
-	return (prev->next);
+	len = 0;
+	while (stack->next->ordinal != -1)
+	{
+		len++;
+		stack = stack->next;
+	}
+	return (len);
 }
 
-void	lstcpy(t_list *src, t_list *dest)
-{
-	t_list	*new;
-
-	new = malloc(sizeof(t_list));
-	if (new == NULL)
-		malloc_error(new);
-	new->value = src->value;
-	new->ordinal = src->ordinal;
-	new->prev = dest;
-	new->next = dest->next;
-	dest->next->prev = new;
-	dest->next = new;
-	return ;
-}
-
-t_list	*search_tail(t_list	*stack)
+bool	is_sorted(t_list *stack)
 {
 	while (stack->next->ordinal != -1)
+	{
+		if (stack->ordinal > stack->next->ordinal)
+			return (false);
 		stack = stack->next;
-	return (stack);
+	}
+	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 00:43:42 by minabe            #+#    #+#             */
-/*   Updated: 2023/02/24 16:58:34 by minabe           ###   ########.fr       */
+/*   Updated: 2023/03/08 12:30:13 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,56 +14,78 @@
 #include "../include/utils.h"
 #include "../include/push_swap.h"
 
-void	print_command(int command);
-
-void	command1(t_list *stack, int command)
+bool	command1(t_list *stack, int command)
 {
-	if (command == SA || command == SB)
+	if ((command == SA && stack->next->ordinal < stack->next->next->ordinal) || (command == SB && stack->next->ordinal < stack->next->next->ordinal))
 	{
-		swap(stack);
-		print_command(command);
+		if (swap(stack))
+		{
+			// print_command(command);
+			return (true);
+		}
 	}
 	if (command == RA || command == RB)
 	{
-		rotate(stack);
-		print_command(command);
+		if (rotate(stack))
+		{
+			// print_command(command);
+			return (true);
+		}
 	}
 	else if (command == RRA || command == RRB)
 	{
-		rev_rotate(stack);
-		print_command(command);
+		if (rev_rotate(stack))
+		{
+			// print_command(command);
+			return (true);
+		}
 	}
-	else
-		printf("Nothing\n");
+	return (false);
 }
 
-void	command2(t_list *stackA, t_list *stackB, int command)
+bool	command2(t_list *stackA, t_list *stackB, int command)
 {
 	if (command == SS)
 	{
-		swap(stackA);
-		swap(stackB);
-		print_command(command);
+		if (swap(stackA), swap(stackB))
+		{
+			// print_command(command);
+			return (true);
+		}
 	}
 	if (command == RR)
 	{
-		rotate(stackA);
-		rotate(stackB);
-		print_command(command);
+		if (rotate(stackA), rotate(stackB))
+		{
+			// print_command(command);
+			return (true);
+		}
 	}
 	if (command == RRR)
 	{
-		rev_rotate(stackA);
-		rev_rotate(stackB);
-		print_command(command);
+		if (rev_rotate(stackA), rev_rotate(stackB))
+		{
+			// print_command(command);
+			return (true);
+		}
 	}
-	if (command == PA|| command == PB)
+	if (command == PA)
 	{
-		push(stackA, stackB);
-		print_command(command);
+		if (push(stackB, stackA))
+		{
+			// print_command(command);
+			return (true);
+		}
 	}
-	else
-		printf("Nothing\n");
+	if (command == PB)
+	{
+		if (push(stackA, stackB))
+		{
+			// print_command(command);
+			return (true);
+		}
+	}
+	return (false);
 }
 
 void	print_command(int command)

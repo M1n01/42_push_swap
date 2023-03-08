@@ -1,6 +1,6 @@
 *.a
 push_swap
-checker_Mac
+checker*
 a.out*
 *.txt
 .vscode

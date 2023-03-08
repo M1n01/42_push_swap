@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 08:53:25 by minabe            #+#    #+#             */
-/*   Updated: 2023/02/24 17:19:57 by minabe           ###   ########.fr       */
+/*   Updated: 2023/02/26 17:26:22 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,22 @@ static void	lstadd_tail(t_list *stack, int value, ssize_t coodinate)
 
 t_tool	*init_tool()
 {
+	size_t	i;
 	t_tool	*tool;
 
 	tool = malloc(sizeof(t_tool));
 	if (!tool)
 		malloc_error(tool);
-	tool->ans = NULL;
+	tool->ans = malloc(sizeof(int) * (LIMIT_LESS6));
+	if (tool->ans == NULL)
+		malloc_error(tool->ans);
+	i = 0;
+	while (i < LIMIT_LESS6)
+	{
+		tool->ans[i] = -1;
+		i++;
+	}
 	tool->turn = 0;
+	tool->pre = -1;
 	return (tool);
 }
