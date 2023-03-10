@@ -6,13 +6,15 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:50:21 by minabe            #+#    #+#             */
-/*   Updated: 2023/03/08 12:18:32 by minabe           ###   ########.fr       */
+/*   Updated: 2023/03/10 22:13:53 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 #include "../include/utils.h"
 #include "../include/push_swap.h"
+
+#include "../include/debug.h"
 
 size_t	stack_size(t_list *stack)
 {
@@ -29,11 +31,11 @@ size_t	stack_size(t_list *stack)
 
 bool	is_sorted(t_list *stack)
 {
-	while (stack->next->ordinal != -1)
+	while (stack->prev->ordinal != -1)
 	{
-		if (stack->ordinal > stack->next->ordinal)
+		if (stack->ordinal > stack->prev->ordinal)
 			return (false);
-		stack = stack->next;
+		stack = stack->prev;
 	}
 	return (true);
 }

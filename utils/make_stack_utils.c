@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pretreatment.c                                     :+:      :+:    :+:   */
+/*   make_stack_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 19:05:46 by minabe            #+#    #+#             */
-/*   Updated: 2023/02/23 22:22:41 by minabe           ###   ########.fr       */
+/*   Updated: 2023/03/10 16:27:14 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 #include "../include/utils.h"
 #include "../include/push_swap.h"
+
+#include "../include/debug.h"
 
 static void	sort(int *array, size_t size);
 static void	int_swap(int *big, int *small);

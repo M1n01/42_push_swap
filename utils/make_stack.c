@@ -6,18 +6,20 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 08:53:25 by minabe            #+#    #+#             */
-/*   Updated: 2023/02/26 17:26:22 by minabe           ###   ########.fr       */
+/*   Updated: 2023/03/10 16:53:30 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
+#include "../include/debug.h"
+
 static void	lstadd_tail(t_list *stack, int value, ssize_t coodinate);
 
-t_list	*make_stack(int ac, char *av[])
+t_list	*make_stack1(int ac, char *av[])
 {
-	int	*array;
-	int	i;
+	int		*array;
+	int		i;
 	ssize_t	*coordinate;
 	t_list	*stack;
 
@@ -71,7 +73,7 @@ static void	lstadd_tail(t_list *stack, int value, ssize_t coodinate)
 	return ;
 }
 
-t_tool	*init_tool()
+t_tool	*init_tool(void)
 {
 	size_t	i;
 	t_tool	*tool;
@@ -79,15 +81,16 @@ t_tool	*init_tool()
 	tool = malloc(sizeof(t_tool));
 	if (!tool)
 		malloc_error(tool);
-	tool->ans = malloc(sizeof(int) * (LIMIT_LESS6));
-	if (tool->ans == NULL)
-		malloc_error(tool->ans);
+	tool->tmp = malloc(sizeof(int) * (LIMIT_LESS6));
+	if (tool->tmp == NULL)
+		malloc_error(tool->tmp);
 	i = 0;
 	while (i < LIMIT_LESS6)
 	{
-		tool->ans[i] = -1;
+		tool->tmp[i] = -1;
 		i++;
 	}
+	tool->ans = NULL;
 	tool->turn = 0;
 	tool->pre = -1;
 	return (tool);

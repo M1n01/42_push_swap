@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 00:43:42 by minabe            #+#    #+#             */
-/*   Updated: 2023/03/08 12:30:13 by minabe           ###   ########.fr       */
+/*   Updated: 2023/03/10 17:51:51 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,102 +14,89 @@
 #include "../include/utils.h"
 #include "../include/push_swap.h"
 
-bool	command1(t_list *stack, int command)
+#include "../include/debug.h"
+
+bool	command1(t_list *stack, int cmd)
 {
-	if ((command == SA && stack->next->ordinal < stack->next->next->ordinal) || (command == SB && stack->next->ordinal < stack->next->next->ordinal))
+	if ((cmd == SA || cmd == SB) && is_swap(stack, NULL, cmd))
 	{
-		if (swap(stack))
-		{
-			// print_command(command);
-			return (true);
-		}
+		swap(stack);
+		return (true);
 	}
-	if (command == RA || command == RB)
+	if ((cmd == RA || cmd == RB) && is_rotate(stack, NULL, cmd))
 	{
-		if (rotate(stack))
-		{
-			// print_command(command);
-			return (true);
-		}
+		rotate(stack);
+		return (true);
 	}
-	else if (command == RRA || command == RRB)
+	if ((cmd == RRA || cmd == RRB) && is_revrotate(stack, NULL, cmd))
 	{
-		if (rev_rotate(stack))
-		{
-			// print_command(command);
-			return (true);
-		}
+		rev_rotate(stack);
+		return (true);
 	}
 	return (false);
 }
 
-bool	command2(t_list *stackA, t_list *stackB, int command)
+bool	command2(t_list *stack1, t_list *stack2, int cmd)
 {
-	if (command == SS)
+	// puts("Hello");
+	if (cmd == SS && is_swap(stack1, stack2, cmd))
 	{
-		if (swap(stackA), swap(stackB))
-		{
-			// print_command(command);
-			return (true);
-		}
+		// puts("ss");
+		swap(stack1);
+		swap(stack2);
+		return (true);
 	}
-	if (command == RR)
+	if (cmd == RR && is_rotate(stack1, stack2, cmd))
 	{
-		if (rotate(stackA), rotate(stackB))
-		{
-			// print_command(command);
-			return (true);
-		}
+		// puts("rr");
+		rotate(stack1);
+		rotate(stack2);
+		return (true);
 	}
-	if (command == RRR)
+	if (cmd == RRR && is_revrotate(stack1, stack2, cmd))
 	{
-		if (rev_rotate(stackA), rev_rotate(stackB))
-		{
-			// print_command(command);
-			return (true);
-		}
+		// puts("rrr");
+		rev_rotate(stack1);
+		rev_rotate(stack2);
+		return (true);
 	}
-	if (command == PA)
+	if (cmd == PA && is_push(stack2, cmd))
 	{
-		if (push(stackB, stackA))
-		{
-			// print_command(command);
-			return (true);
-		}
+		// puts("pa");
+		push(stack2, stack1);
+		return (true);
 	}
-	if (command == PB)
+	if (cmd == PB && is_push(stack1, cmd))
 	{
-		if (push(stackA, stackB))
-		{
-			// print_command(command);
-			return (true);
-		}
+		// puts("pb");
+		push(stack1, stack2);
+		return (true);
 	}
 	return (false);
 }
 
-void	print_command(int command)
+void	print_command(int cmd)
 {
-	if (command == SA)
+	if (cmd == SA)
 		ft_printf("sa\n");
-	if (command == SB)
+	if (cmd == SB)
 		ft_printf("sb\n");
-	if (command == SS)
+	if (cmd == SS)
 		ft_printf("ss\n");
-	if (command == RA)
+	if (cmd == RA)
 		ft_printf("ra\n");
-	if (command == RB)
+	if (cmd == RB)
 		ft_printf("rb\n");
-	if (command == RR)
+	if (cmd == RR)
 		ft_printf("rr\n");
-	if (command == RRA)
+	if (cmd == RRA)
 		ft_printf("rra\n");
-	if (command == RRB)
+	if (cmd == RRB)
 		ft_printf("rrb\n");
-	if (command == RRR)
+	if (cmd == RRR)
 		ft_printf("rrr\n");
-	if (command == PA)
+	if (cmd == PA)
 		ft_printf("pa\n");
-	if (command == PB)
+	if (cmd == PB)
 		ft_printf("pb\n");
 }

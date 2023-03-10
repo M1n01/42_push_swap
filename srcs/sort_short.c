@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quick_sort.c                                       :+:      :+:    :+:   */
+/*   sort_short.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:16:09 by minabe            #+#    #+#             */
-/*   Updated: 2023/03/08 14:10:16 by minabe           ###   ########.fr       */
+/*   Updated: 2023/03/10 22:06:17 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,79 @@
 #include "../include/utils.h"
 #include "../include/push_swap.h"
 
+#include "../include/debug.h"
+
 int		ch_cmd(int cmd);
+void	update_ans(t_tool *tool, size_t turn);
 bool	exec_cmd(t_list *stack1, t_list *stack2, int cmd);
 bool	is_detour(int cmd, t_tool *tool);
+void	dfs(t_list *stack1, t_list *stack2, t_tool *tool, size_t turn);
 
 void	sort_short(t_list *stack1, t_list *stack2, t_tool *tool, size_t turn)
 {
+	tool->turn = LIMIT_LESS6;
+	dfs(stack1, stack2, tool, turn);
+	// puts("~~~~~~~~");
+	print_ans(tool, tool->turn);
+	// printf("%zd\n", tool->turn);
+	return ;
+}
+
+void	dfs(t_list *stack1, t_list *stack2, t_tool *tool, size_t turn)
+{
 	int	cmd;
 
-	if (turn == LIMIT_LESS6)
+	// printf("turn : %zd\n", turn);
+	if (turn >= tool->turn)
 		return ;
 	if (stack_size(stack2) == 0 && is_sorted(stack1))
 	{
-		print_ans(tool, turn);
-		exit(0);
+		// puts("");
+		// printLists(stack1, stack2);
+		// puts("");
+		return (update_ans(tool, turn));
 	}
 	cmd = -1;
 	while (++cmd < 11)
 	{
-		if (is_detour(cmd, tool) || turn >= LIMIT_LESS6)
+		if (is_detour(cmd, tool) || turn >= tool->turn)
 			continue ;
 		if (!exec_cmd(stack1, stack2, cmd))
+		{
+			// puts("return");
+			// print_command(cmd);
+			// printLists(stack1, stack2);
 			continue ;
+		}
+		// print_command(cmd);
+		// printLists(stack1, stack2);
 		tool->pre = cmd;
-		tool->ans[turn] = cmd;
-		sort_short(stack1, stack2, tool, turn + 1);
+		tool->tmp[turn] = cmd;
+		dfs(stack1, stack2, tool, turn + 1);
 		exec_cmd(stack1, stack2, ch_cmd(cmd));
+		// printLists(stack1, stack2);
 	}
+}
+
+void	update_ans(t_tool *tool, size_t turn)
+{
+	size_t	i;
+
+	if (tool->ans != NULL)
+		safer_free(tool->ans);
+	tool->ans = malloc(sizeof(size_t) * (turn));
+	if (!tool->ans)
+		malloc_error(tool);
+	i = 0;
+	while (i < turn)
+	{
+		// printf("%zd\n", i);
+		tool->ans[i] = tool->tmp[i];
+		i++;
+	}
+	tool->turn = turn;
+	// print_ans(tool, tool->turn);
+	return ;
 }
 
 int	ch_cmd(int cmd)

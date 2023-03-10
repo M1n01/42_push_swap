@@ -6,13 +6,15 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 17:49:56 by minabe            #+#    #+#             */
-/*   Updated: 2023/03/08 13:09:11 by minabe           ###   ########.fr       */
+/*   Updated: 2023/03/10 16:27:09 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 #include "../include/utils.h"
 #include "../include/push_swap.h"
+
+#include "../include/debug.h"
 
 void	malloc_error(void *p)
 {

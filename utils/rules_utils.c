@@ -6,13 +6,15 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:54:43 by minabe            #+#    #+#             */
-/*   Updated: 2023/03/08 09:55:57 by minabe           ###   ########.fr       */
+/*   Updated: 2023/03/10 17:14:46 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 #include "../include/utils.h"
 #include "../include/push_swap.h"
+
+#include "../include/debug.h"
 
 t_list	*lstdelone_node(t_list *trash)
 {
@@ -25,6 +27,7 @@ t_list	*lstdelone_node(t_list *trash)
 	return (prev->next);
 }
 
+// destの後ろにcopy
 void	lstcpy(t_list *src, t_list *dest)
 {
 	t_list	*new;

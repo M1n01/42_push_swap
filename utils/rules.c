@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 16:05:10 by minabe            #+#    #+#             */
-/*   Updated: 2023/03/08 12:42:10 by minabe           ###   ########.fr       */
+/*   Updated: 2023/03/10 22:02:03 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,49 +14,45 @@
 #include "../include/utils.h"
 #include "../include/push_swap.h"
 
-#include <stdio.h>
+#include "../include/debug.h"
 
-bool	swap(t_list *stack)
+void	swap(t_list *stack)
 {
 	t_list	*src;
 
-	src = stack->next;
-	if (src->next->ordinal == -1)
-		return (false);
-	lstcpy(src, src->next);
+	src = stack->prev->prev;
+	lstcpy(src, src->prev);
 	lstdelone_node(src);
-	return (true);
+	return ;
 }
 
-bool	push(t_list *from, t_list *to)
-{
-	if (from->next->ordinal == -1)
-		return (false);
-	lstcpy(from->next, to);
-	lstdelone_node(from->next);
-	return (true);
-}
-
-bool	rotate(t_list *stack)
+// fromの1つ目(0個目は番兵ノード)をtoの1つ目(0個目は番兵ノード)にpush
+void	push(t_list *from, t_list *to)
 {
 	t_list	*src;
 
-	if (stack->next->ordinal == -1)
-		return (false);
-	src = stack->next;
-	lstcpy(src, search_tail(stack));
+	src = from->prev;
+	lstcpy(src, to->prev);
 	lstdelone_node(src);
-	return (true);
+	return ;
 }
 
-bool	rev_rotate(t_list *stack)
+void	rotate(t_list *stack)
 {
 	t_list	*src;
 
-	if (stack->next->ordinal == -1)
-		return (false);
+	src = stack->prev;
+	lstcpy(src, stack);
+	lstdelone_node(src);
+	return ;
+}
+
+void	rev_rotate(t_list *stack)
+{
+	t_list	*src;
+
 	src = stack->next;
-	lstcpy(search_tail(stack), src);
-	lstdelone_node(search_tail(stack));
-	return (true);
+	lstcpy(src, stack->prev);
+	lstdelone_node(src);
+	return ;
 }
