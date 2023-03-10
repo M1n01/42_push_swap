@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:16:09 by minabe            #+#    #+#             */
-/*   Updated: 2023/03/10 22:06:17 by minabe           ###   ########.fr       */
+/*   Updated: 2023/03/10 22:20:31 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	sort_short(t_list *stack1, t_list *stack2, t_tool *tool, size_t turn)
 	dfs(stack1, stack2, tool, turn);
 	// puts("~~~~~~~~");
 	print_ans(tool, tool->turn);
+	// printLists(stack1, stack2);
 	// printf("%zd\n", tool->turn);
 	return ;
 }
@@ -42,7 +43,7 @@ void	dfs(t_list *stack1, t_list *stack2, t_tool *tool, size_t turn)
 	if (stack_size(stack2) == 0 && is_sorted(stack1))
 	{
 		// puts("");
-		// printLists(stack1, stack2);
+		printLists(stack1, stack2);
 		// puts("");
 		return (update_ans(tool, turn));
 	}
