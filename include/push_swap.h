@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 16:44:37 by minabe            #+#    #+#             */
-/*   Updated: 2023/03/10 16:20:18 by minabe           ###   ########.fr       */
+/*   Updated: 2023/03/11 12:51:02 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ bool	command1(t_list *stack, int command);
 bool	command2(t_list *stack1, t_list *stack2, int command);
 bool	is_sorted(t_list *stack);
 void	print_ans(t_tool *tool, size_t turn);
-
+int		ch_cmd(int cmd);
+void	update_ans(t_tool *tool, size_t turn);
+bool	exec_cmd(t_list *stack1, t_list *stack2, int cmd);
+bool	is_detour(int cmd, t_tool *tool);
 
 
 
