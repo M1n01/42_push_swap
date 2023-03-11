@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:50:21 by minabe            #+#    #+#             */
-/*   Updated: 2023/03/10 22:21:35 by minabe           ###   ########.fr       */
+/*   Updated: 2023/03/11 12:03:12 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ size_t	stack_size(t_list *stack)
 
 bool	is_sorted(t_list *stack)
 {
-	while (stack->prev->ordinal != -1)
+	while (stack->next->ordinal != -1)
 	{
-		if (stack->ordinal > stack->prev->ordinal)
+		if (stack->ordinal > stack->next->ordinal)
 			return (false);
-		stack = stack->prev;
+		stack = stack->next;
 	}
 	return (true);
 }
