@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 17:49:56 by minabe            #+#    #+#             */
-/*   Updated: 2023/03/10 16:27:09 by minabe           ###   ########.fr       */
+/*   Updated: 2023/03/11 12:55:56 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,23 @@ void	safer_free(void *p)
 	}
 }
 
-void	lstclear(t_list *stack)
-{
-	t_list	*p;
-	t_list	*head;
+// void	lstclear(t_list *stack)
+// {
+// 	t_list	*p;
+// 	t_list	*head;
 
-	if (stack == NULL)
-		return ;
-	// puts("lstclear1");
-	head = stack;
-	while (stack->next != head)
-	{
-		p = stack->next;
-		// puts("lstclear2");
-		lstdelone_node(stack);
-		stack = p;
-	}
-	// puts("lstclear3");
-	stack = NULL;
-	return ;
-}
+// 	if (stack == NULL)
+// 		return ;
+// 	// puts("lstclear1");
+// 	head = stack;
+// 	while (stack->next != head)
+// 	{
+// 		p = stack->next;
+// 		// puts("lstclear2");
+// 		lstdelone_node(stack);
+// 		stack = p;
+// 	}
+// 	// puts("lstclear3");
+// 	stack = NULL;
+// 	return ;
+// }

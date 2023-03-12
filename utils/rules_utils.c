@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:54:43 by minabe            #+#    #+#             */
-/*   Updated: 2023/03/10 17:14:46 by minabe           ###   ########.fr       */
+/*   Updated: 2023/03/11 13:20:34 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ t_list	*lstdelone_node(t_list *trash)
 	return (prev->next);
 }
 
-// destの後ろにcopy
 void	lstcpy(t_list *src, t_list *dest)
 {
 	t_list	*new;

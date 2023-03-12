@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rules.c                                            :+:      :+:    :+:   */
+/*   tool_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/23 16:05:10 by minabe            #+#    #+#             */
-/*   Updated: 2023/03/11 13:21:06 by minabe           ###   ########.fr       */
+/*   Created: 2023/03/11 13:21:58 by minabe            #+#    #+#             */
+/*   Updated: 2023/03/11 17:24:06 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,42 +16,32 @@
 
 #include "../include/debug.h"
 
-void	swap(t_list *stack)
+t_tool	*init_tool(void)
 {
-	t_list	*src;
+	size_t	i;
+	t_tool	*tool;
 
-	src = stack->next;
-	lstcpy(src, src->next);
-	lstdelone_node(src);
-	return ;
+	tool = malloc(sizeof(t_tool));
+	if (!tool)
+		malloc_error(tool);
+	tool->tmp = malloc(sizeof(int) * (LIMIT_SHORT));
+	if (tool->tmp == NULL)
+		malloc_error(tool->tmp);
+	i = 0;
+	while (i < LIMIT_SHORT)
+	{
+		tool->tmp[i] = -1;
+		i++;
+	}
+	tool->turn = LIMIT_SHORT;
+	tool->ans = NULL;
+	tool->pre = -1;
+	return (tool);
 }
 
-void	push(t_list *from, t_list *to)
+void	free_tool(t_tool *tool)
 {
-	t_list	*src;
-
-	src = from->next;
-	lstcpy(src, to);
-	lstdelone_node(src);
-	return ;
-}
-
-void	rotate(t_list *stack)
-{
-	t_list	*src;
-
-	src = stack->next;
-	lstcpy(src, stack->prev);
-	lstdelone_node(src);
-	return ;
-}
-
-void	rev_rotate(t_list *stack)
-{
-	t_list	*src;
-
-	src = stack->prev;
-	lstcpy(src, stack);
-	lstdelone_node(src);
-	return ;
+	safer_free(tool->tmp);
+	safer_free(tool->ans);
+	safer_free(tool);
 }

@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:16:09 by minabe            #+#    #+#             */
-/*   Updated: 2023/03/11 12:51:22 by minabe           ###   ########.fr       */
+/*   Updated: 2023/03/11 17:17:37 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,14 @@
 
 static void	dfs(t_list *stack1, t_list *stack2, t_tool *tool, size_t turn);
 
-void	sort_short(t_list *stack1, t_list *stack2, t_tool *tool, size_t turn)
+void	sort_short(t_list *stack1, t_list *stack2)
 {
-	tool->turn = LIMIT_LESS6;
-	dfs(stack1, stack2, tool, turn);
+	t_tool	*tool;
+
+	tool = init_tool();
+	dfs(stack1, stack2, tool, 0);
 	print_ans(tool, tool->turn);
+	free_tool(tool);
 	return ;
 }
 

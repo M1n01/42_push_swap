@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 00:11:08 by minabe            #+#    #+#             */
-/*   Updated: 2023/03/10 17:38:41 by minabe           ###   ########.fr       */
+/*   Updated: 2023/03/11 17:22:40 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ typedef struct	s_list
 	struct s_list	*prev;
 }				t_list;
 
-// ansはcount_size分mallocしてprint(ans[i])
 typedef struct	s_tool
 {
 	size_t	turn;
@@ -72,5 +71,6 @@ bool	is_swap(t_list *stack, t_list *stack2, int cmd);
 bool	is_rotate(t_list *stack, t_list *stack2, int cmd);
 bool	is_revrotate(t_list *stack, t_list *stack2, int cmd);
 bool	is_push(t_list *from, int cmd);
+void	free_tool(t_tool *tool);
 
 # endif
