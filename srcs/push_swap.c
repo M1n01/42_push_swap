@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 18:29:32 by minabe            #+#    #+#             */
-/*   Updated: 2023/03/11 17:24:30 by minabe           ###   ########.fr       */
+/*   Updated: 2023/03/15 11:57:19 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 void	push_swap(t_list *stack1, t_list *stack2, size_t size)
 {
-	if (is_sorted(stack1))
+	if (is_sorted(stack1, ASC))
 		return ;
 	if (size <= 6)
 	{

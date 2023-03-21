@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 00:11:08 by minabe            #+#    #+#             */
-/*   Updated: 2023/03/11 17:22:40 by minabe           ###   ########.fr       */
+/*   Updated: 2023/03/12 12:13:00 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,6 @@ bool	is_rotate(t_list *stack, t_list *stack2, int cmd);
 bool	is_revrotate(t_list *stack, t_list *stack2, int cmd);
 bool	is_push(t_list *from, int cmd);
 void	free_tool(t_tool *tool);
+ssize_t	ordinal(t_list *stack, size_t i);
 
 # endif

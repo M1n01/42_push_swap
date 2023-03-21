@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:16:09 by minabe            #+#    #+#             */
-/*   Updated: 2023/03/11 17:17:37 by minabe           ###   ########.fr       */
+/*   Updated: 2023/03/20 15:59:45 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	dfs(t_list *stack1, t_list *stack2, t_tool *tool, size_t turn)
 
 	if (turn >= tool->turn)
 		return ;
-	if (stack_size(stack2) == 0 && is_sorted(stack1))
+	if (stack_size(stack2) == 0 && is_sorted(stack1, ASC))
 		return (update_ans(tool, turn));
 	cmd = -1;
 	while (++cmd < 11)
