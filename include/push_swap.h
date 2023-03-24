@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 16:44:37 by minabe            #+#    #+#             */
-/*   Updated: 2023/03/21 13:51:00 by minabe           ###   ########.fr       */
+/*   Updated: 2023/03/23 00:16:38 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void	update_ans(t_tool *tool, size_t turn);
 bool	exec_cmd(t_list *stack1, t_list *stack2, int cmd);
 bool	is_detour(int cmd, t_tool *tool);
 void	sort_long(t_list *stack1, t_list *stack2);
-void	sort_middle(t_list *stack1, t_list *stack2);
+size_t	count_rotate(t_list *stack, ssize_t find);
+size_t	count_revrotate(t_list *stack, ssize_t find);
 
 
 #endif

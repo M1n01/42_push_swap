@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 00:11:08 by minabe            #+#    #+#             */
-/*   Updated: 2023/03/12 12:13:00 by minabe           ###   ########.fr       */
+/*   Updated: 2023/03/25 05:58:49 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct	s_list
 {
 	int				value;
 	ssize_t			ordinal;
+	ssize_t			pos;
 	struct s_list	*next;
 	struct s_list	*prev;
 }				t_list;

@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:25:54 by minabe            #+#    #+#             */
-/*   Updated: 2023/03/22 22:36:48 by minabe           ###   ########.fr       */
+/*   Updated: 2023/03/25 06:56:42 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,18 @@
 
 static void	sort(t_list *stack1, t_list *stack2);
 static void	split_into_stack(t_list *stack1, t_list *stack2, size_t size);
-size_t	count_rotate(t_list *stack, ssize_t find);
-size_t	count_revrotate(t_list *stack, ssize_t find);
 
 void	sort_long(t_list *stack1, t_list *stack2)
 {
-	// pivot以下のものをstackBに移す
-	// quick_sort(stack1, stack2, stack_size(stack1) / 2);
-	// init_bucket(stack2);
+	size_t	i;
+
+	i = 0;
+	while (stack1->next->ordinal != -1)
+	{
+		stack1->pos = (ssize_t)i;
+		stack1 = stack1->next;
+		i++;
+	}
 	// printLists(stack1, stack2);
 	split_into_stack(stack1, stack2, stack_size(stack1));
 	// puts("[after split]");
@@ -72,42 +76,8 @@ static void	sort(t_list *stack1, t_list *stack2)
 	}
 }
 
-size_t	count_rotate(t_list *stack, ssize_t find)
-{
-	size_t	i;
-	size_t	count;
-
-	i = 0;
-	count = 0;
-	while (i < stack_size(stack))
-	{
-		if (stack->next->ordinal == find)
-			break ;
-		stack = stack->next;
-		count++;
-		i++;
-	}
-	return (count);
-}
-
-size_t	count_revrotate(t_list *stack, ssize_t find)
-{
-	size_t	i;
-	size_t	count;
-
-	i = 0;
-	count = 0;
-	while (i < stack_size(stack))
-	{
-		if (stack->next->ordinal == find)
-			break ;
-		stack = stack->prev;
-		count++;
-		i++;
-	}
-	return (count);
-}
-
+// 連続していないものをstack2にpushする
+// stack2は小中大に分ける
 void	split_into_stack(t_list *stack1, t_list *stack2, size_t size)
 {
 	size_t	i;
