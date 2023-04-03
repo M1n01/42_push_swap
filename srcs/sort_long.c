@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:25:54 by minabe            #+#    #+#             */
-/*   Updated: 2023/03/12 10:47:47 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/03 14:10:35 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,87 +16,171 @@
 
 #include "../include/debug.h"
 
-static void	dfs(t_list *stack1, t_list *stack2, size_t pivot);
 static void	set_stack(t_list *stack1, t_list *stack2, size_t pivot);
-static size_t	count_rotate(t_list *stack, ssize_t pivot);
-static size_t	count_revrotate(t_list *stack, ssize_t pivot);
 
-void	sort_long(t_list *stack1, t_list *stack2)
+void	sort1(t_list *stack1, t_list *stack2)
 {
-	dfs(stack1, stack2, stack_size(stack1) / 2);
+	// stack2の中で一番大きい値を探す
+	t_list	*max;
+	t_list	*min;
+	long	step;
+
+	while (stack_size(stack2) > 0)
+	{
+		max = find_max(stack2);
+		min = find_min(stack2);
+		// stack2の中で一番大きい値をstack1の先頭に持ってくる
+		// cal_stepsを使う
+		if (cal_steps(stack2, max) <= cal_steps(stack2, min))
+		{
+			step = cal_steps(stack2, max);
+			rotate_min_steps(stack2, step);
+			push(stack2, stack1);
+			print_command(PA);
+		}
+		else
+		{
+			step = cal_steps(stack2, min);
+			rotate_min_steps(stack2, step);
+			push(stack2, stack1);
+			print_command(PA);
+			rotate(stack1);
+			print_command(RA);
+		}
+	}
 	return ;
 }
 
-static void	dfs(t_list *stack1, t_list *stack2, size_t pivot)
+t_list	*find_not_sorted(t_list *stack)
 {
-	if (is_sorted(stack1) && stack_size(stack2) == 0)
-		return ;
-	// pivot以下のものをstackBに移す
-	set_stack(stack1, stack2, pivot);
-	// stackBを最小単位に分割して入れ替える(再帰)
-	printLists(stack1, stack2);
+	while (stack->next->ordinal != -1)
+	{
+		if (ABS(stack->ordinal - stack->prev->ordinal) > 3\
+		&& ABS(stack->ordinal - stack->next->ordinal) > 3)
+			return (stack->next);
+		stack = stack->next;
+	}
+	return (NULL);
+}
+
+void	sort2(t_list *stack1, t_list *stack2)
+{
+	long	step;
+	t_list	*max;
+	t_list	*min;
+
+	while (!is_sorted(stack1))
+	{
+		if (find_not_sorted(stack1) != NULL)
+		{
+			step = cal_steps(stack1, find_not_sorted(stack1));
+			rotate_min_steps(stack1, step);
+			push(stack1, stack2);
+			print_command(PB);
+		}
+	}
+	// stack2の中身をstack1に戻す
+	while (stack_size(stack2) > 0)
+	{
+		max = find_max(stack2);
+		min = find_min(stack2);
+		// stack2の中で一番大きい値をstack1の先頭に持ってくる
+		// cal_stepsを使う
+		if (cal_steps(stack2, max) <= cal_steps(stack2, min))
+		{
+			step = cal_steps(stack2, max);
+			rotate_min_steps(stack2, step);
+			push(stack2, stack1);
+			print_command(PA);
+		}
+		else
+		{
+			step = cal_steps(stack2, min);
+			rotate_min_steps(stack2, step);
+			push(stack2, stack1);
+			print_command(PA);
+			rotate(stack1);
+			print_command(RA);
+		}
+	}
+	return ;
+}
+
+void	sort_long(t_list *stack1, t_list *stack2)
+{
+	size_t	i;
+
+	i = 1;
+	while (i <= 1)
+	{
+		// printLists(stack1, stack2);
+		set_stack(stack1, stack2, (stack_size(stack1) / 2) - 1);
+		// printLists(stack1, stack2);
+		sort1(stack1, stack2);
+		// printLists(stack1, stack2);
+		sort2(stack1, stack2);
+		// printLists(stack1, stack2);
+		i++;
+	}
+	while (stack1->next->ordinal != 0)
+	{
+		rotate(stack1);
+		print_command(RA);
+	}
+	return ;
+}
+
+void	ra(t_list *stack1, t_list *stack2, ssize_t p)
+{
+	// stack2の先頭がpivot/2より大きい場合、rrを実行
+	if (stack2->next->ordinal != -1 && stack2->next->ordinal <= p)
+	{
+		// printf("p: %ld\n", stack2->next->ordinal);
+		rotate(stack1);
+		rotate(stack2);
+		print_command(RR);
+	}
+	else
+	{
+		rotate(stack1);
+		print_command(RA);
+	}
 }
 
 static void	set_stack(t_list *stack1, t_list *stack2, size_t pivot)
 {
 	size_t	i;
-	size_t	step;
+	long	step;
 
+	// printf("pivot: %ld\n", pivot);
 	i = 0;
 	while (i < pivot)
 	{
-		if (count_rotate(stack1, pivot - 1) <= count_revrotate(stack1, pivot - 1))
+		// pivot以下の値をstack2に移動
+		step = cal_min_steps_to_pivot(stack1, pivot);
+		// printf("[step]: %ld\n", step);
+		if (step >= 0)
 		{
-			step = count_rotate(stack1, pivot - 1);
+			// あとでrrもできる関数に変更
 			while (step > 0)
 			{
-				command1(stack1, RA);
-				ft_printf("ra\n");
+				ra(stack1, stack2, pivot / 2);
 				step--;
 			}
 		}
 		else
 		{
-			step = count_revrotate(stack1, pivot - 1);
-			while (step > 0)
+			while (step < 0)
 			{
-				command1(stack1, RRA);
-				ft_printf("rra\n");
-				step--;
+				rev_rotate(stack1);
+				print_command(RRA);
+				step++;
 			}
 		}
-		command2(stack1, stack2, PB);
-		ft_printf("pb\n");
+		push(stack1, stack2);
+		print_command(PB);
+		// printLists(stack1, stack2);
 		i++;
 	}
 	return ;
 }
-
-static size_t	count_rotate(t_list *stack, ssize_t pivot)
-{
-	size_t	step;
-
-	step = 0;
-	stack = stack->next;
-	while (stack->ordinal > pivot)
-	{
-		stack = stack->next;
-		step++;
-	}
-	return (step);
-}
-
-static size_t	count_revrotate(t_list *stack, ssize_t pivot)
-{
-	size_t	step;
-
-	step = 1;
-	stack = search_tail(stack);
-	while (stack->ordinal > pivot)
-	{
-		stack = stack->prev;
-		step++;
-	}
-	return (step);
-}
-

@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 15:14:49 by minabe            #+#    #+#             */
-/*   Updated: 2023/02/24 21:24:01 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/02 14:30:36 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
+
+# define ABS(x) ((x) < 0 ? -(x) : (x))
 
 int		ft_atoi(const char *str);
 int		ft_isdigit(int c);
