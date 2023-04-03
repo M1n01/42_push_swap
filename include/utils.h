@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 00:11:08 by minabe            #+#    #+#             */
-/*   Updated: 2023/03/25 05:58:49 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/03 14:33:23 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,13 @@ bool	is_rotate(t_list *stack, t_list *stack2, int cmd);
 bool	is_revrotate(t_list *stack, t_list *stack2, int cmd);
 bool	is_push(t_list *from, int cmd);
 void	free_tool(t_tool *tool);
-ssize_t	ordinal(t_list *stack, size_t i);
+ssize_t	count_rotate(t_list *stack, t_list *find);
+t_list	*search_ordinal(t_list *stack, ssize_t value);
+long	cal_steps(t_list *stack, t_list *find);
+long	cal_min_steps_to_pivot(t_list *stack, ssize_t pivot);
+void	rotate_min_steps(t_list *stack, long step);
+t_list	*find_max(t_list *stack);
+t_list	*find_min(t_list *stack);
+void	rotate_min_steps(t_list *stack, long step);
 
 # endif

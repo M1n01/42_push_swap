@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:50:21 by minabe            #+#    #+#             */
-/*   Updated: 2023/03/20 18:07:26 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/03 14:34:15 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,33 +42,68 @@ bool	is_sorted(t_list *stack, int order)
 	return (true);
 }
 
-bool	is_nsorted(t_list *stack, size_t n, int order)
+ssize_t	count_rotate(t_list *stack, t_list *find)
 {
-	size_t	i;
+	size_t	step;
 
-	i = 0;
-	while (stack->next->ordinal != -1 && i <= n)
+	if (find == NULL)
+		return (-1);
+	step = 0;
+	while (stack->next != find)
 	{
-		if (order == ASC && stack->ordinal > stack->next->ordinal)
-			return (false);
-		if (order == DESC && stack->ordinal < stack->next->ordinal)
-			return (false);
 		stack = stack->next;
-		i++;
+		step++;
 	}
-	return (true);
+	return (step);
 }
 
-ssize_t	ordinal(t_list *stack, size_t i)
+t_list	*search_ordinal(t_list *stack, ssize_t value)
 {
-	size_t	j;
-
-	j = 0;
-	stack = stack->next;
-	while (j < i && stack->next->ordinal != -1)
+	while (stack->next->ordinal != -1)
 	{
+		if (stack->ordinal == value)
+			return (stack);
 		stack = stack->next;
-		j++;
 	}
-	return (stack->ordinal);
+	return (NULL);
+}
+
+long	cal_steps(t_list *stack, t_list *find)
+{
+	long	rotate;
+	long	rev_rotate;
+	long	min_step;
+
+	min_step = LONG_MAX;
+	rotate = count_rotate(stack, find);
+	rev_rotate = (stack_size(stack) - rotate);
+	if (rotate <= rev_rotate && rotate <= ABS(min_step))
+		min_step = rotate;
+	else if (rev_rotate <= rotate && rev_rotate <= ABS(min_step))
+		min_step = -rev_rotate;
+	return (min_step);
+}
+
+long	cal_min_steps_to_pivot(t_list *stack, ssize_t pivot)
+{
+	long	min_step;
+	ssize_t	i;
+	t_list	*find;
+
+	// pivot以下の値が先頭に来るまでに最短で何手か計算する
+	i = 0;
+	while (i < pivot)
+	{
+		if (min_step == 0)
+			break ;
+		find = search_ordinal(stack, i);
+		if (find == NULL)
+		{
+			i++;
+			continue ;
+		}
+		min_step = cal_steps(stack, find);
+		i++;
+	}
+	return (min_step);
 }
