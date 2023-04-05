@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:50:13 by minabe            #+#    #+#             */
-/*   Updated: 2023/03/12 18:28:56 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/05 12:42:09 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,22 @@
 
 #include "../include/debug.h"
 
-void	update_ans(t_tool *tool, size_t turn)
+void	update_ans(t_info *info, size_t turn)
 {
 	size_t	i;
 
-	if (tool->ans != NULL)
-		safer_free(tool->ans);
-	tool->ans = malloc(sizeof(size_t) * (turn));
-	if (!tool->ans)
-		malloc_error(tool);
+	if (info->ans != NULL)
+		safer_free(info->ans);
+	info->ans = malloc(sizeof(size_t) * (turn));
+	if (!info->ans)
+		malloc_error(info);
 	i = 0;
 	while (i < turn)
 	{
-		tool->ans[i] = tool->tmp[i];
+		info->ans[i] = info->tmp[i];
 		i++;
 	}
-	tool->turn = turn;
+	info->turn = turn;
 	return ;
 }
 
@@ -66,41 +66,41 @@ bool	exec_cmd(t_list *stack1, t_list *stack2, int cmd)
 		return (command2(stack1, stack2, cmd));
 }
 
-bool	is_detour(int cmd, t_tool *tool)
+bool	is_detour(int cmd, t_info *info)
 {
-	if (cmd == PA && tool->pre == PB)
+	if (cmd == PA && info->pre == PB)
 		return (true);
-	if (cmd == PB && tool->pre == PA)
+	if (cmd == PB && info->pre == PA)
 		return (true);
-	if (cmd == SA && (tool->pre == SA || tool->pre == SB || tool->pre == SS))
+	if (cmd == SA && (info->pre == SA || info->pre == SB || info->pre == SS))
 		return (true);
-	if (cmd == SB && (tool->pre == SA || tool->pre == SB || tool->pre == SS))
+	if (cmd == SB && (info->pre == SA || info->pre == SB || info->pre == SS))
 		return (true);
-	if (cmd == SS && (tool->pre == SA || tool->pre == SB || tool->pre == SS))
+	if (cmd == SS && (info->pre == SA || info->pre == SB || info->pre == SS))
 		return (true);
-	if (cmd == RA && (tool->pre == RRA || tool->pre == RRR))
+	if (cmd == RA && (info->pre == RRA || info->pre == RRR))
 		return (true);
-	if (cmd == RB && (tool->pre == RRB || tool->pre == RRR))
+	if (cmd == RB && (info->pre == RRB || info->pre == RRR))
 		return (true);
-	if (cmd == RR && (tool->pre == RRA || tool->pre == RRB || tool->pre == RRR))
+	if (cmd == RR && (info->pre == RRA || info->pre == RRB || info->pre == RRR))
 		return (true);
-	if (cmd == RRA && (tool->pre == RA || tool->pre == RR))
+	if (cmd == RRA && (info->pre == RA || info->pre == RR))
 		return (true);
-	if (cmd == RRB && (tool->pre == RB || tool->pre == RR))
+	if (cmd == RRB && (info->pre == RB || info->pre == RR))
 		return (true);
-	if (cmd == RRR && (tool->pre == RA || tool->pre == RB || tool->pre == RR))
+	if (cmd == RRR && (info->pre == RA || info->pre == RB || info->pre == RR))
 		return (true);
 	return (false);
 }
 
-void	print_ans(t_tool *tool, size_t turn)
+void	print_ans(t_info *info, size_t turn)
 {
 	size_t	i;
 
 	i = 0;
 	while (i < turn)
 	{
-		print_command(tool->ans[i]);
+		print_command(info->ans[i]);
 		i++;
 	}
 }

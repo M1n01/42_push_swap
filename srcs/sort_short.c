@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:16:09 by minabe            #+#    #+#             */
-/*   Updated: 2023/03/20 15:59:45 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/05 12:42:28 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,37 +16,37 @@
 
 #include "../include/debug.h"
 
-static void	dfs(t_list *stack1, t_list *stack2, t_tool *tool, size_t turn);
+static void	dfs(t_list *stack1, t_list *stack2, t_info *info, size_t turn);
 
 void	sort_short(t_list *stack1, t_list *stack2)
 {
-	t_tool	*tool;
+	t_info	*info;
 
-	tool = init_tool();
-	dfs(stack1, stack2, tool, 0);
-	print_ans(tool, tool->turn);
-	free_tool(tool);
+	info = init_info();
+	dfs(stack1, stack2, info, 0);
+	print_ans(info, info->turn);
+	free_info(info);
 	return ;
 }
 
-static void	dfs(t_list *stack1, t_list *stack2, t_tool *tool, size_t turn)
+static void	dfs(t_list *stack1, t_list *stack2, t_info *info, size_t turn)
 {
-	int	cmd;
+	int	command;
 
-	if (turn >= tool->turn)
+	if (turn >= info->turn)
 		return ;
 	if (stack_size(stack2) == 0 && is_sorted(stack1, ASC))
-		return (update_ans(tool, turn));
-	cmd = -1;
-	while (++cmd < 11)
+		return (update_ans(info, turn));
+	command = -1;
+	while (++command < 11)
 	{
-		if (is_detour(cmd, tool) || turn >= tool->turn)
+		if (is_detour(command, info) || turn >= info->turn)
 			continue ;
-		if (!exec_cmd(stack1, stack2, cmd))
+		if (!exec_cmd(stack1, stack2, command))
 			continue ;
-		tool->pre = cmd;
-		tool->tmp[turn] = cmd;
-		dfs(stack1, stack2, tool, turn + 1);
-		exec_cmd(stack1, stack2, ch_cmd(cmd));
+		info->pre = command;
+		info->tmp[turn] = command;
+		dfs(stack1, stack2, info, turn + 1);
+		exec_cmd(stack1, stack2, ch_cmd(command));
 	}
 }

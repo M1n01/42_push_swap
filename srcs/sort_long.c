@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:25:54 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/03 20:31:14 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/05 12:39:57 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,14 @@ static void	set_stack(t_list *stack1, t_list *stack2, size_t pivot);
 
 void	sort1(t_list *stack1, t_list *stack2)
 {
-	// stack2の中で一番大きい値を探す
-	t_list	*max;
 	t_list	*min;
+	t_list	*max;
 	long	step;
 
 	while (stack_size(stack2) > 0)
 	{
-		max = find_max(stack2);
 		min = find_min(stack2);
+		max = find_max(stack2);
 		// stack2の中で一番大きい値をstack1の先頭に持ってくる
 		// cal_stepsを使う
 		if (cal_steps(stack2, max) <= cal_steps(stack2, min))

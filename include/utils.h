@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 00:11:08 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/03 14:33:23 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/05 12:42:15 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ typedef struct	s_list
 	struct s_list	*prev;
 }				t_list;
 
-typedef struct	s_tool
+typedef struct	s_info
 {
 	size_t	turn;
 	int		*tmp;
 	int		*ans;
 	int		pre;
-}				t_tool;
+}				t_info;
 
 typedef enum	e_cmd
 {
@@ -65,14 +65,14 @@ t_list	*lstdelone_node(t_list *trash);
 void	lstcpy(t_list *src, t_list *dest);
 void	malloc_error(void *p);
 void	safer_free(void *p);
-t_tool	*init_tool();
+t_info	*init_info();
 size_t	stack_size(t_list *stack);
 void	print_command(int command);
-bool	is_swap(t_list *stack, t_list *stack2, int cmd);
-bool	is_rotate(t_list *stack, t_list *stack2, int cmd);
-bool	is_revrotate(t_list *stack, t_list *stack2, int cmd);
-bool	is_push(t_list *from, int cmd);
-void	free_tool(t_tool *tool);
+// bool	is_swap(t_list *stack, t_list *stack2, int cmd);
+// bool	is_rotate(t_list *stack, t_list *stack2, int cmd);
+// bool	is_revrotate(t_list *stack, t_list *stack2, int cmd);
+// bool	is_push(t_list *from, int cmd);
+void	free_info(t_info *cmd);
 ssize_t	count_rotate(t_list *stack, t_list *find);
 t_list	*search_ordinal(t_list *stack, ssize_t value);
 long	cal_steps(t_list *stack, t_list *find);

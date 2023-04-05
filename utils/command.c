@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 00:43:42 by minabe            #+#    #+#             */
-/*   Updated: 2023/03/12 19:04:13 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/05 20:26:18 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ bool	command1(t_list *stack, int cmd)
 	if (stack_size(stack) <= 1)
 		return (false);
 	if (cmd == SA || cmd == SB)
-		swap(stack);
+		return (swap(stack), true);
 	if (cmd == RA || cmd == RB)
-		rotate(stack);
+		return(rotate(stack), true);
 	if (cmd == RRA || cmd == RRB)
-		rev_rotate(stack);
-	return (true);
+		return (rev_rotate(stack), true);
+	return (false);
 }
 
 bool	command2(t_list *stack1, t_list *stack2, int cmd)
@@ -38,15 +38,9 @@ bool	command2(t_list *stack1, t_list *stack2, int cmd)
 	if (cmd == RRR && stack_size(stack1) > 1 && stack_size(stack2) > 1)
 		return (rev_rotate(stack1), rev_rotate(stack2), true);
 	if (cmd == PA && stack_size(stack2) > 0)
-	{
-		push(stack2, stack1);
-		return (true);
-	}
+		return (push(stack2, stack1), true);
 	if (cmd == PB && stack_size(stack1) > 0)
-	{
-		push(stack1, stack2);
-		return (true);
-	}
+		return (push(stack1, stack2), true);
 	return (false);
 }
 
