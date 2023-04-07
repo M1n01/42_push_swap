@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 00:11:08 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/05 12:42:15 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/06 13:52:07 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,11 @@ ssize_t	count_rotate(t_list *stack, t_list *find);
 t_list	*search_ordinal(t_list *stack, ssize_t value);
 long	cal_steps(t_list *stack, t_list *find);
 long	cal_min_steps_to_pivot(t_list *stack, ssize_t pivot);
-void	rotate_min_steps(t_list *stack, long step);
+void	rotate_min_steps(t_list *stack, long step, int which_stack);
 t_list	*find_max(t_list *stack);
 t_list	*find_min(t_list *stack);
-void	rotate_min_steps(t_list *stack, long step);
+
+void	set_stack(t_list *stack1, t_list *stack2, size_t pivot);
+void	sort1(t_list *stack1, t_list *stack2);
 
 # endif

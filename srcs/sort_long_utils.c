@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 23:21:44 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/02 23:28:02 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/06 14:16:58 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,17 @@ t_list	*find_min(t_list *stack)
 	return (min);
 }
 
-void	rotate_min_steps(t_list *stack, long step)
+void	rotate_min_steps(t_list *stack, long step, int which_stack)
 {
 	if (step >= 0)
 	{
 		while (step > 0)
 		{
 			rotate(stack);
-			print_command(RB);
+			if (which_stack == 'A')
+				print_command(RA);
+			else if (which_stack == 'B')
+				print_command(RB);
 			step--;
 		}
 	}
@@ -62,7 +65,10 @@ void	rotate_min_steps(t_list *stack, long step)
 		while (step < 0)
 		{
 			rev_rotate(stack);
-			print_command(RRB);
+			if (which_stack == 'A')
+				print_command(RRA);
+			else if (which_stack == 'B')
+				print_command(RRB);
 			step++;
 		}
 	}
