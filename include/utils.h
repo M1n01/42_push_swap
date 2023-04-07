@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 00:11:08 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/06 13:52:07 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/07 18:33:01 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	rotate_min_steps(t_list *stack, long step, int which_stack);
 t_list	*find_max(t_list *stack);
 t_list	*find_min(t_list *stack);
 
-void	set_stack(t_list *stack1, t_list *stack2, size_t pivot);
+void	set_stack(t_list *stack1, t_list *stack2);
 void	sort1(t_list *stack1, t_list *stack2);
 
 # endif

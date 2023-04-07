@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 13:51:34 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/06 18:22:56 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/07 19:10:36 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,40 +61,33 @@ long	cal_min_steps_to_pivot(t_list *stack, ssize_t pivot)
 	return (min_step);
 }
 
-void	set_stack(t_list *stack1, t_list *stack2, size_t pivot)
+// stack_size(stack1)の下位1/3を残し、残りをstack2に移動する
+// この時、中位1/3はpb後にrbを実行する
+void	set_stack(t_list *stack1, t_list *stack2)
 {
-	size_t	i;
-	long	step;
+	ssize_t	pivot;
+	ssize_t	remain;
 
-	// printf("pivot: %ld\n", pivot);
-	i = 0;
-	while (i <= pivot)
+	// 300だったら100, 200、 400だったら134, 266、 500だったら167, 333
+	// つまりpivotは3で割って切り上げ
+	remain = (stack_size(stack1) + 2) / 3;
+	pivot = stack_size(stack1) - remain;
+	while ((ssize_t)stack_size(stack1) > remain)
 	{
-		// pivot以下の値をstack2に移動
-		step = cal_min_steps_to_pivot(stack1, pivot);
-		// printf("[step]: %ld\n", step);
-		if (step >= 0)
+		if (stack1->next->ordinal < pivot)
 		{
-			// あとでrrもできる関数に変更
-			while (step > 0)
+			push(stack1, stack2);
+			print_command(PB);
+			if (stack2->next->ordinal > (pivot - 1) / 2)
 			{
-				rotate(stack1);
-				print_command(RA);
-				step--;
+				rotate(stack2);
+				print_command(RB);
 			}
 		}
 		else
 		{
-			while (step < 0)
-			{
-				rev_rotate(stack1);
-				print_command(RRA);
-				step++;
-			}
+			rotate(stack1);
+			print_command(RA);
 		}
-		push(stack1, stack2);
-		print_command(PB);
-		// printLists(stack1, stack2);
-		i++;
 	}
 }
