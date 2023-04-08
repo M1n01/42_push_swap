@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 16:44:37 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/08 12:44:32 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/08 13:24:36 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,12 @@
 
 void	push_swap(t_list *stack1, t_list *stack2, size_t size);
 void	sort_short(t_list *stack1, t_list *stack2);
-bool	command1(t_list *stack, int command);
-bool	command2(t_list *stack1, t_list *stack2, int command);
-bool	is_sorted(t_list *stack, int order);
-void	print_ans(t_info *info, size_t turn);
-int		ch_cmd(int command);
-void	update_ans(t_info *info, size_t turn);
-bool	exec_cmd(t_list *stack1, t_list *stack2, int command);
-bool	is_detour(int cmd, t_info *info);
-void	sort_long(t_list *stack1, t_list *stack2);
 
+void	sort_long(t_list *stack1, t_list *stack2);
 void	stack_top_third_sort(t_list *stack1, t_list *stack2);
 void	stack_middle_third_sort(t_list *stack1, t_list *stack2);
 void	stack_bottom_third_sort(t_list *stack1, t_list *stack2);
+
+void	lstclear(t_list *stack);
 
 #endif

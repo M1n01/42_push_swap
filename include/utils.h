@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 00:11:08 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/07 22:13:26 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/08 13:35:45 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,31 +57,40 @@ int		*make_array(int ac, char *av[]);
 ssize_t	*compression(int *array, size_t	size);
 t_list	*init_stack(void);
 t_list	*search_tail(t_list	*stack);
+
 void	swap(t_list *stack);
 void	push(t_list *from, t_list *to);
 void	rotate(t_list *stack);
 void	rev_rotate(t_list *stack);
+
 t_list	*lstdelone_node(t_list *trash);
 void	lstcpy(t_list *src, t_list *dest);
 void	malloc_error(void *p);
 void	safer_free(void *p);
-t_info	*init_info();
 size_t	stack_size(t_list *stack);
+
 void	print_command(int command);
-// bool	is_swap(t_list *stack, t_list *stack2, int cmd);
-// bool	is_rotate(t_list *stack, t_list *stack2, int cmd);
-// bool	is_revrotate(t_list *stack, t_list *stack2, int cmd);
-// bool	is_push(t_list *from, int cmd);
+bool	is_sorted(t_list *stack, int order);
+void	print_ans(t_info *info, size_t turn);
+void	update_ans(t_info *info, size_t turn);
+int		ch_cmd(int command);
+bool	exec_cmd(t_list *stack1, t_list *stack2, int command);
+bool	is_detour(int cmd, t_info *info);
+t_info	*init_info();
 void	free_info(t_info *cmd);
+
 ssize_t	count_rotate(t_list *stack, t_list *find);
-t_list	*search_ordinal(t_list *stack, ssize_t value);
 long	cal_steps(t_list *stack, t_list *find);
 long	cal_min_steps_to_pivot(t_list *stack, ssize_t pivot);
 void	rotate_min_steps(t_list *stack, long step, int which_stack);
+
+t_list	*search_ordinal(t_list *stack, ssize_t value);
 t_list	*find_max(t_list *stack);
 t_list	*find_min(t_list *stack);
 
 void	set_stack(t_list *stack1, t_list *stack2);
 void	opt_swap(t_list *stack1, t_list *stack2, int command);
+
+void	execute_and_print(t_list *stack1, t_list *stack2, int command);
 
 # endif

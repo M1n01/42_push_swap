@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 23:21:44 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/08 13:17:02 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/08 13:59:18 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include "../include/push_swap.h"
 
 #include "../include/debug.h"
+
+void	execute_and_print(t_list *stack1, t_list *stack2, int command);
 
 // stack_size(stack1)の下位1/3を残し、残りをstack2に移動する
 // この時、中位1/3はpb後にrbを実行する
@@ -31,19 +33,12 @@ void	set_stack(t_list *stack1, t_list *stack2)
 	{
 		if (stack1->next->ordinal < pivot)
 		{
-			push(stack1, stack2);
-			print_command(PB);
+			execute_and_print(stack1, stack2, PB);
 			if (stack2->next->ordinal > (pivot - 1) / 2)
-			{
-				rotate(stack2);
-				print_command(RB);
-			}
+				execute_and_print(stack1, stack2, RB);
 		}
 		else
-		{
-			rotate(stack1);
-			print_command(RA);
-		}
+			execute_and_print(stack1, stack2, RA);
 	}
 }
 
@@ -61,10 +56,8 @@ void	stack_top_third_sort(t_list *stack1, t_list *stack2)
 		min = find_min(stack2);
 		step = cal_steps(stack2, min);
 		rotate_min_steps(stack2, step, 'B');
-		push(stack2, stack1);
-		print_command(PA);
-		rotate(stack1);
-		print_command(RA);
+		execute_and_print(stack1, stack2, PA);
+		execute_and_print(stack1, stack2, RA);
 	}
 }
 
@@ -82,23 +75,19 @@ void	stack_middle_third_sort(t_list *stack1, t_list *stack2)
 		{
 			step = cal_steps(stack2, min);
 			rotate_min_steps(stack2, step, 'B');
-			push(stack2, stack1);
-			print_command(PA);
-			rotate(stack1);
-			print_command(RA);
+			execute_and_print(stack1, stack2, PA);
+			execute_and_print(stack1, stack2, RA);
 		}
 		else
 		{
 			step = cal_steps(stack2, max);
 			rotate_min_steps(stack2, step, 'B');
-			push(stack2, stack1);
-			print_command(PA);
+			execute_and_print(stack1, stack2, PA);
 		}
 	}
 	while (stack1->next->ordinal <= (ssize_t)(stack_size(stack1) / 3) * 2)
 	{
-		rotate(stack1);
-		print_command(RA);
+		execute_and_print(stack1, stack2, RA);
 	}
 }
 
@@ -120,8 +109,7 @@ void	stack_bottom_third_sort(t_list *stack1, t_list *stack2)
 		// 	printLists(stack1, stack2);
 		// 	continue ;
 		// }
-		push(stack1, stack2);
-		print_command(PB);
+		execute_and_print(stack1, stack2, PB);
 	}
 	while ((ssize_t)stack_size(stack2) > 0)
 	{
@@ -133,10 +121,29 @@ void	stack_bottom_third_sort(t_list *stack1, t_list *stack2)
 		min = find_min(stack2);
 		step = cal_steps(stack2, min);
 		rotate_min_steps(stack2, step, 'B');
-		push(stack2, stack1);
-		print_command(PA);
-		rotate(stack1);
-		print_command(RA);
+		execute_and_print(stack1, stack2, PA);
+		execute_and_print(stack1, stack2, RA);
 	}
 		return ;
+}
+
+void	execute_and_print(t_list *stack1, t_list *stack2, int command)
+{
+	if (command == SA || command == SS)
+		swap(stack1);
+	if (command == SB || command == SS)
+		swap(stack2);
+	if (command == PA)
+		push(stack2, stack1);
+	if (command == PB)
+		push(stack1, stack2);
+	if (command == RA || command == RR)
+		rotate(stack1);
+	if (command == RB || command == RR)
+		rotate(stack2);
+	if (command == RRA || command == RRR)
+		rev_rotate(stack1);
+	if (command == RRB || command == RRR)
+		rev_rotate(stack2);
+	print_command(command);
 }
