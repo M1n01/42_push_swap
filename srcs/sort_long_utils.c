@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 23:21:44 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/08 13:59:18 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/08 16:10:38 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 #include "../include/push_swap.h"
 
 #include "../include/debug.h"
-
-void	execute_and_print(t_list *stack1, t_list *stack2, int command);
 
 // stack_size(stack1)の下位1/3を残し、残りをstack2に移動する
 // この時、中位1/3はpb後にrbを実行する
@@ -35,10 +33,10 @@ void	set_stack(t_list *stack1, t_list *stack2)
 		{
 			execute_and_print(stack1, stack2, PB);
 			if (stack2->next->ordinal > (pivot - 1) / 2)
-				execute_and_print(stack1, stack2, RB);
+				execute_and_print(NULL, stack2, RB);
 		}
 		else
-			execute_and_print(stack1, stack2, RA);
+			execute_and_print(stack1, NULL, RA);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 10:34:45 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/08 13:22:49 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/08 15:07:50 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int ac, char *av[])
 	stack1 = make_stack1(ac, av);
 	stack2 = init_stack();
 	push_swap(stack1, stack2, ac - 1);
-	lstclear(stack1);
+	safer_free(stack2);
 	// system("leaks -q a.out");
 	return (0);
 }

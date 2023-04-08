@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:35:33 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/08 14:00:54 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/08 16:12:53 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,10 @@ void	rotate_min_steps(t_list *stack, long step, int which_stack)
 	{
 		while (step > 0)
 		{
-			rotate(stack);
 			if (which_stack == 'A')
-				print_command(RA);
+				execute_and_print(stack, NULL, RA);
 			else if (which_stack == 'B')
-				print_command(RB);
+				execute_and_print(NULL, stack, RB);
 			step--;
 		}
 	}
@@ -34,42 +33,13 @@ void	rotate_min_steps(t_list *stack, long step, int which_stack)
 	{
 		while (step < 0)
 		{
-			rev_rotate(stack);
 			if (which_stack == 'A')
-				print_command(RRA);
+				execute_and_print(stack, NULL, RRA);
 			else if (which_stack == 'B')
-				print_command(RRB);
+				execute_and_print(NULL, stack, RRB);
 			step++;
 		}
 	}
-}
-
-long	cal_min_steps_to_pivot(t_list *stack, ssize_t pivot)
-{
-	long	min_step;
-	ssize_t	i;
-	t_list	*find;
-
-	// pivot以下の値が先頭に来るまでに最短で何手か計算する
-	min_step = LONG_MAX;
-	i = 0;
-	while (i <= pivot)
-	{
-		if (min_step == 0)
-			break ;
-		find = search_ordinal(stack, i);
-		if (find == NULL)
-		{
-			i++;
-			continue ;
-		}
-		// printf("value: %ld\n", i);
-		if (min_step > ABS(cal_steps(stack, find)))
-			min_step = cal_steps(stack, find);
-		// printf("min_step: %ld\n", min_step);
-		i++;
-	}
-	return (min_step);
 }
 
 void	ra(t_list *stack1, t_list *stack2, ssize_t p)
@@ -78,14 +48,11 @@ void	ra(t_list *stack1, t_list *stack2, ssize_t p)
 	if (stack2->next->ordinal != -1 && stack2->next->ordinal <= p)
 	{
 		// printf("p: %ld\n", stack2->next->ordinal);
-		rotate(stack1);
-		rotate(stack2);
-		print_command(RR);
+		execute_and_print(stack1, stack2, RR);
 	}
 	else
 	{
-		rotate(stack1);
-		print_command(RA);
+		execute_and_print(stack1, NULL, RA);
 	}
 }
 
