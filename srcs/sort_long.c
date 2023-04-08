@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:25:54 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/07 19:10:48 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/08 12:29:39 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,16 @@ void	skip_sorted(t_list *stack1)
 
 void	sort_long(t_list *stack1, t_list *stack2)
 {
-	printLists(stack1, stack2);
+	// printLists(stack1, stack2);
 	set_stack(stack1, stack2);
-	printLists(stack1, stack2);
-	// [stack2をソートし、stack1にpushする]
-	// sort1(stack1, stack2);
+	// printLists(stack1, stack2);
+	// [stack2の上位半分をsortし、stack1に移動する]
+	sort1(stack1, stack2);
 	// [ソートしていないところまでスキップする]
 	// skip_sorted(stack1);
 	// printLists(stack1, stack2);
 	// sort2(stack1, stack2);
 	// rotate_min_steps(stack1, cal_steps(stack1, search_ordinal(stack1, 0)), 'A');
-	printLists(stack1, stack2);
+	// printLists(stack1, stack2);
 	return ;
 }
