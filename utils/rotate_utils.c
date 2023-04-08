@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_stack.c                                        :+:      :+:    :+:   */
+/*   rotate_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/06 13:51:34 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/07 19:10:36 by minabe           ###   ########.fr       */
+/*   Created: 2023/03/10 15:35:33 by minabe            #+#    #+#             */
+/*   Updated: 2023/04/08 12:59:53 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,31 @@
 
 #include "../include/debug.h"
 
-void	ra(t_list *stack1, t_list *stack2, ssize_t p)
+void	rotate_min_steps(t_list *stack, long step, int which_stack)
 {
-	// stack2の先頭がpivot/2より大きい場合、rrを実行
-	if (stack2->next->ordinal != -1 && stack2->next->ordinal <= p)
+	if (step >= 0)
 	{
-		// printf("p: %ld\n", stack2->next->ordinal);
-		rotate(stack1);
-		rotate(stack2);
-		print_command(RR);
+		while (step > 0)
+		{
+			rotate(stack);
+			if (which_stack == 'A')
+				print_command(RA);
+			else if (which_stack == 'B')
+				print_command(RB);
+			step--;
+		}
 	}
 	else
 	{
-		rotate(stack1);
-		print_command(RA);
+		while (step < 0)
+		{
+			rev_rotate(stack);
+			if (which_stack == 'A')
+				print_command(RRA);
+			else if (which_stack == 'B')
+				print_command(RRB);
+			step++;
+		}
 	}
 }
 
@@ -61,33 +72,19 @@ long	cal_min_steps_to_pivot(t_list *stack, ssize_t pivot)
 	return (min_step);
 }
 
-// stack_size(stack1)の下位1/3を残し、残りをstack2に移動する
-// この時、中位1/3はpb後にrbを実行する
-void	set_stack(t_list *stack1, t_list *stack2)
+void	ra(t_list *stack1, t_list *stack2, ssize_t p)
 {
-	ssize_t	pivot;
-	ssize_t	remain;
-
-	// 300だったら100, 200、 400だったら134, 266、 500だったら167, 333
-	// つまりpivotは3で割って切り上げ
-	remain = (stack_size(stack1) + 2) / 3;
-	pivot = stack_size(stack1) - remain;
-	while ((ssize_t)stack_size(stack1) > remain)
+	// stack2の先頭がpivot/2より大きい場合、rrを実行
+	if (stack2->next->ordinal != -1 && stack2->next->ordinal <= p)
 	{
-		if (stack1->next->ordinal < pivot)
-		{
-			push(stack1, stack2);
-			print_command(PB);
-			if (stack2->next->ordinal > (pivot - 1) / 2)
-			{
-				rotate(stack2);
-				print_command(RB);
-			}
-		}
-		else
-		{
-			rotate(stack1);
-			print_command(RA);
-		}
+		// printf("p: %ld\n", stack2->next->ordinal);
+		rotate(stack1);
+		rotate(stack2);
+		print_command(RR);
+	}
+	else
+	{
+		rotate(stack1);
+		print_command(RA);
 	}
 }

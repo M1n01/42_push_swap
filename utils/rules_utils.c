@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:54:43 by minabe            #+#    #+#             */
-/*   Updated: 2023/03/11 13:20:34 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/08 12:56:32 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,4 @@ void	lstcpy(t_list *src, t_list *dest)
 	dest->next->prev = new;
 	dest->next = new;
 	return ;
-}
-
-t_list	*search_tail(t_list	*stack)
-{
-	while (stack->next->ordinal != -1)
-		stack = stack->next;
-	return (stack);
 }

@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:50:13 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/05 12:42:09 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/08 13:15:29 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,37 +33,6 @@ void	update_ans(t_info *info, size_t turn)
 	}
 	info->turn = turn;
 	return ;
-}
-
-int	ch_cmd(int cmd)
-{
-	if (cmd == PA)
-		return (PB);
-	if (cmd == PB)
-		return (PA);
-	if (cmd == RA)
-		return (RRA);
-	if (cmd == RB)
-		return (RRB);
-	if (cmd == RR)
-		return (RRR);
-	if (cmd == RRA)
-		return (RA);
-	if (cmd == RRB)
-		return (RB);
-	if (cmd == RRR)
-		return (RR);
-	return (cmd);
-}
-
-bool	exec_cmd(t_list *stack1, t_list *stack2, int cmd)
-{
-	if (cmd == SA || cmd == RA || cmd == RRA)
-		return (command1(stack1, cmd));
-	if (cmd == SB || cmd == RB || cmd == RRB)
-		return (command1(stack2, cmd));
-	else
-		return (command2(stack1, stack2, cmd));
 }
 
 bool	is_detour(int cmd, t_info *info)

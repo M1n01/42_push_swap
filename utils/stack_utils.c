@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:50:21 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/07 17:59:59 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/08 12:51:29 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,17 +70,6 @@ ssize_t	count_rev_rotate(t_list *stack, t_list *find)
 		step++;
 	}
 	return (step);
-}
-
-t_list	*search_ordinal(t_list *stack, ssize_t value)
-{
-	while (stack->next->ordinal != -1)
-	{
-		if (stack->ordinal == value)
-			return (stack);
-		stack = stack->next;
-	}
-	return (NULL);
 }
 
 long	cal_steps(t_list *stack, t_list *find)

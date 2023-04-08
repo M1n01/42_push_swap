@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 00:43:42 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/05 20:26:18 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/08 13:02:33 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,37 @@
 #include "../include/push_swap.h"
 
 #include "../include/debug.h"
+
+int	ch_cmd(int cmd)
+{
+	if (cmd == PA)
+		return (PB);
+	if (cmd == PB)
+		return (PA);
+	if (cmd == RA)
+		return (RRA);
+	if (cmd == RB)
+		return (RRB);
+	if (cmd == RR)
+		return (RRR);
+	if (cmd == RRA)
+		return (RA);
+	if (cmd == RRB)
+		return (RB);
+	if (cmd == RRR)
+		return (RR);
+	return (cmd);
+}
+
+bool	exec_cmd(t_list *stack1, t_list *stack2, int cmd)
+{
+	if (cmd == SA || cmd == RA || cmd == RRA)
+		return (command1(stack1, cmd));
+	if (cmd == SB || cmd == RB || cmd == RRB)
+		return (command1(stack2, cmd));
+	else
+		return (command2(stack1, stack2, cmd));
+}
 
 bool	command1(t_list *stack, int cmd)
 {
