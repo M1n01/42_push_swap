@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   opt_command.c                                      :+:      :+:    :+:   */
+/*   swap_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 22:06:05 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/07 22:13:00 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/10 13:25:33 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 #include "../include/debug.h"
 
-static bool	is_swap(t_list *stack)
+bool	is_swap(t_list *stack)
 {
 	if (stack->next->ordinal > stack->next->next->ordinal)
 		return (true);

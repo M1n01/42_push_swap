@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 23:21:44 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/08 16:10:38 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/10 12:58:55 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,18 @@ void	set_stack(t_list *stack1, t_list *stack2)
 	pivot = stack_size(stack1) - remain;
 	while ((ssize_t)stack_size(stack1) > remain)
 	{
-		if (stack1->next->ordinal < pivot)
+		// if (stack1->next->ordinal < pivot)
+		// {
+		// 	execute_and_print(stack1, stack2, PB);
+		// 	if (stack2->next->ordinal > (pivot - 1) / 2)
+		// 		execute_and_print(NULL, stack2, RB);
+		// }
+		if (is_not_bottom(stack1->next, pivot))
 		{
 			execute_and_print(stack1, stack2, PB);
-			if (stack2->next->ordinal > (pivot - 1) / 2)
+			if (is_bottom(stack2->next, (pivot - 1) / 2) && is_bottom(stack1->next, pivot))
+				execute_and_print(stack1, stack2, RR);
+			else if (is_bottom(stack2->next, (pivot - 1) / 2))
 				execute_and_print(NULL, stack2, RB);
 		}
 		else

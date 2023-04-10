@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_long.c                                        :+:      :+:    :+:   */
+/*   bool_ordinal.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/11 13:25:54 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/08 16:32:43 by minabe           ###   ########.fr       */
+/*   Created: 2023/04/10 12:08:35 by minabe            #+#    #+#             */
+/*   Updated: 2023/04/10 12:24:12 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,16 @@
 
 #include "../include/debug.h"
 
-void	sort_long(t_list *stack1, t_list *stack2)
+bool	is_not_bottom(t_list *list, ssize_t pivot)
 {
-	// printLists(stack1, stack2);
-	set_stack(stack1, stack2);
-	// printLists(stack1, stack2);
-	stack_top_third_sort(stack1, stack2);
-	stack_middle_third_sort(stack1, stack2);
-	stack_bottom_third_sort(stack1, stack2);
-	// printLists(stack1, stack2);
-	return ;
+	if (list->ordinal < pivot)
+		return (true);
+	return (false);
+}
+
+bool	is_bottom(t_list *list, ssize_t pivot)
+{
+	if (list->ordinal > pivot)
+		return (true);
+	return (false);
 }
