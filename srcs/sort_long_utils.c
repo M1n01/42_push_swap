@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 23:21:44 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/10 19:21:52 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/10 21:26:34 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,46 +115,44 @@ void	stack_middle_third_sort(t_list *stack1, t_list *stack2)
 			execute_and_print(stack1, stack2, PA);
 		}
 	}
-	while (stack1->next->ordinal <= (ssize_t)(stack_size(stack1) / 3) * 2)
-	{
-		execute_and_print(stack1, stack2, RA);
-	}
+	step = cal_steps(stack1, find_min(stack1));
+	rotate_min_steps(stack1, step, 'A');
 }
 
 void	stack_bottom_third_sort(t_list *stack1, t_list *stack2)
 {
 	t_list	*min;
-	// t_list	*max;
+	t_list	*max;
 	long	step;
+	size_t	remain;
 
-	// stack_size(stack1)/3 * 2よりも大きいordinalをstack2に移動
-	while (stack1->next->ordinal > (ssize_t)(stack_size(stack1) / 3) * 2)
+	while (stack_size(stack1) > 0)
 	{
-		// min = search_ordinal(stack1, (ssize_t)(stack_size(stack1) / 3) * 2 + 1);
-		// if (min == stack1->next)
-		// {
-		// 	rotate(stack1);
-		// 	print_command(RA);
-		// 	puts("[if]");
-		// 	printLists(stack1, stack2);
-		// 	continue ;
-		// }
-		execute_and_print(stack1, stack2, PB);
-	}
-	while ((ssize_t)stack_size(stack2) > 0)
-	{
-		if (stack2->next->ordinal > stack2->next->next->ordinal)
+		min = find_min(stack1);
+		max = find_max(stack1);
+		if (ABS(cal_steps(stack1, min)) <= ABS(cal_steps(stack1, max)))
 		{
-			swap(stack2);
-			print_command(SB);
+			step = cal_steps(stack1, min);
+			rotate_min_steps(stack1, step, 'A');
+			execute_and_print(stack1, stack2, PB);
 		}
-		min = find_min(stack2);
-		step = cal_steps(stack2, min);
+		else
+		{
+			step = cal_steps(stack1, max);
+			rotate_min_steps(stack1, step, 'A');
+			execute_and_print(stack1, stack2, PB);
+			execute_and_print(stack1, stack2, RB);
+		}
+	}
+	remain = (stack_size(stack2) + 2) / 3;
+	while (stack_size(stack1) < remain)
+	{
+		max = find_max(stack2);
+		step = cal_steps(stack2, max);
 		rotate_min_steps(stack2, step, 'B');
 		execute_and_print(stack1, stack2, PA);
-		execute_and_print(stack1, stack2, RA);
 	}
-		return ;
+	return ;
 }
 
 void	execute_and_print(t_list *stack1, t_list *stack2, int command)
