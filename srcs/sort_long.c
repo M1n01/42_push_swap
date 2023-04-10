@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:25:54 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/10 21:31:00 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/10 21:52:07 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	sort_long(t_list *stack1, t_list *stack2)
 	set_stack(stack1, stack2);
 	// printLists(stack1, stack2);
 	stack_bottom_third_sort(stack1, stack2);
-	stack_top_third_sort(stack1, stack2);
 	stack_middle_third_sort(stack1, stack2);
+	stack_top_third_sort(stack1, stack2);
 	// printLists(stack1, stack2);
 	return ;
 }

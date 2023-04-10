@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 23:21:44 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/10 21:26:34 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/10 21:49:39 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,28 @@ void	set_stack(t_list *stack1, t_list *stack2)
 		if (!is_bottom(stack1->next, pivot))
 		{
 			execute_and_print(stack1, stack2, PB);
-			if (is_middle(stack2->next, pivot) && is_bottom(stack1->next, pivot))
+			if (is_top(stack2->next, pivot) && is_bottom(stack1->next, pivot))
 				execute_and_print(stack1, stack2, RR);
-			else if (is_middle(stack2->next, pivot))
+			else if (is_top(stack2->next, pivot))
 				execute_and_print(NULL, stack2, RB);
 		}
 		else
 			execute_and_print(stack1, NULL, RA);
 	}
+}
+
+t_list	*find_pivot_min(t_list *stack, ssize_t pivot)
+{
+	t_list	*min;
+
+	min = find_max(stack);
+	while (stack->next->ordinal != -1)
+	{
+		if (min->ordinal > stack->next->ordinal && stack->next->ordinal >= pivot)
+			min = stack->next;
+		stack = stack->next;
+	}
+	return (min);
 }
 
 t_list	*find_pivot_max(t_list *stack, ssize_t pivot)
@@ -58,37 +72,36 @@ t_list	*find_pivot_max(t_list *stack, ssize_t pivot)
 
 void	stack_top_third_sort(t_list *stack1, t_list *stack2)
 {
-	ssize_t	pivot;
-	t_list	*min;
+	// t_list	*min;
+	// size_t	rotate;
 	t_list	*max;
 	long	step;
-	size_t	rotate;
 
-	pivot = (stack_size(stack2) + 1) / 2;
-	rotate = 0;
-	while ((ssize_t)stack_size(stack2) >= pivot)
+	// rotate = 0;
+	while ((ssize_t)stack_size(stack2) > 0)
 	{
-		if (stack2->next->ordinal > stack2->next->next->ordinal)
-			opt_swap(stack1, stack2, SB);
-		min = find_min(stack2);
-		max = find_pivot_max(stack2, pivot);
-		if (ABS(cal_steps(stack2, min)) <= ABS(cal_steps(stack2, max)))
-		{
-			step = cal_steps(stack2, min);
-			rotate_min_steps(stack2, step, 'B');
-			execute_and_print(stack1, stack2, PA);
-			execute_and_print(stack1, stack2, RA);
-		}
-		else
-		{
-			step = cal_steps(stack2, max);
-			rotate_min_steps(stack2, step, 'B');
-			execute_and_print(stack1, stack2, PA);
-			rotate++;
-		}
+		// min = find_min(stack2);
+		max = find_max(stack2);
+		step = cal_steps(stack2, max);
+		rotate_min_steps(stack2, step, 'B');
+		execute_and_print(stack1, stack2, PA);
+		// if (ABS(cal_steps(stack2, min)) <= ABS(cal_steps(stack2, max)))
+		// {
+		// 	step = cal_steps(stack2, min);
+		// 	rotate_min_steps(stack2, step, 'B');
+		// 	execute_and_print(stack1, stack2, PA);
+		// 	execute_and_print(stack1, stack2, RA);
+		// 	rotate++;
+		// }
+		// else
+		// {
+		// 	step = cal_steps(stack2, max);
+		// 	rotate_min_steps(stack2, step, 'B');
+		// 	execute_and_print(stack1, stack2, PA);
+		// }
 	}
-	while (rotate-- > 0)
-		execute_and_print(stack1, NULL, RA);
+	// while (rotate-- > 0)
+	// 	execute_and_print(stack1, NULL, RA);
 }
 
 void	stack_middle_third_sort(t_list *stack1, t_list *stack2)
@@ -96,10 +109,14 @@ void	stack_middle_third_sort(t_list *stack1, t_list *stack2)
 	t_list	*min;
 	t_list	*max;
 	long	step;
+	size_t	pivot;
+	size_t	rotate;
 
-	while (stack_size(stack2) > 0)
+	rotate = 0;
+	pivot = (stack_size(stack2) + 1) / 2;
+	while (stack_size(stack2) > pivot)
 	{
-		min = find_min(stack2);
+		min = find_pivot_min(stack2, pivot);
 		max = find_max(stack2);
 		if (ABS(cal_steps(stack2, min)) <= ABS(cal_steps(stack2, max)))
 		{
@@ -107,6 +124,7 @@ void	stack_middle_third_sort(t_list *stack1, t_list *stack2)
 			rotate_min_steps(stack2, step, 'B');
 			execute_and_print(stack1, stack2, PA);
 			execute_and_print(stack1, stack2, RA);
+			rotate++;
 		}
 		else
 		{
@@ -115,8 +133,8 @@ void	stack_middle_third_sort(t_list *stack1, t_list *stack2)
 			execute_and_print(stack1, stack2, PA);
 		}
 	}
-	step = cal_steps(stack1, find_min(stack1));
-	rotate_min_steps(stack1, step, 'A');
+	while (rotate-- > 0)
+		execute_and_print(stack1, NULL, RRA);
 }
 
 void	stack_bottom_third_sort(t_list *stack1, t_list *stack2)
