@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 22:06:05 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/10 13:25:33 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/10 19:25:45 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@
 
 bool	is_swap(t_list *stack)
 {
-	if (stack->next->ordinal > stack->next->next->ordinal)
+	if (stack->next->ordinal - stack->next->next->ordinal == 1)
 		return (true);
 	return (false);
 }
 
 void	opt_swap(t_list *stack1, t_list *stack2, int command)
 {
-	if (command == SA && is_swap(stack2))
+	if (command == SA && stack2->next->next->ordinal - stack2->next->ordinal == 1)
 	{
 		swap(stack1);
 		swap(stack2);
@@ -36,7 +36,7 @@ void	opt_swap(t_list *stack1, t_list *stack2, int command)
 		swap(stack1);
 		print_command(SA);
 	}
-	else if (command == SB && is_swap(stack1))
+	else if (command == SB && stack1->next->ordinal - stack1->next->next->ordinal == 1)
 	{
 		swap(stack1);
 		swap(stack2);

@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 12:08:35 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/10 17:56:50 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/10 18:38:36 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,13 @@ bool	is_middle(t_list *list, ssize_t pivot)
 bool	is_bottom(t_list *list, ssize_t pivot)
 {
 	if (list->ordinal >= pivot)
+		return (true);
+	return (false);
+}
+
+bool	is_top(t_list *list, ssize_t pivot)
+{
+	if (list->ordinal < (pivot - 1) / 2)
 		return (true);
 	return (false);
 }
