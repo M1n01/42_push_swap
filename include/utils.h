@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 00:11:08 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/10 13:25:49 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/10 17:56:55 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	set_stack(t_list *stack1, t_list *stack2);
 void	opt_swap(t_list *stack1, t_list *stack2, int command);
 
 void	execute_and_print(t_list *stack1, t_list *stack2, int command);
-bool	is_not_bottom(t_list *list, ssize_t pivot);
+bool	is_middle(t_list *list, ssize_t pivot);
 bool	is_bottom(t_list *list, ssize_t pivot);
 bool	is_swap(t_list *stack);
 
