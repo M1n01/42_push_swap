@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:35:33 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/11 10:08:45 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/12 15:10:21 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,22 @@
 
 #include "../include/debug.h"
 
-void	rotate_min_steps(t_list *stack, long step, int which_stack)
+void	rotate_min_steps(t_list *stack, long step, int which_stack, t_info *info)
 {
 	if (step >= 0)
 	{
 		while (step > 0)
 		{
 			if (which_stack == 'A')
+			{
 				command(stack, NULL, RA);
-				// execute_and_print(stack, NULL, RA);
+				info->ans = upgrade_ans(info, RA);
+			}
 			else if (which_stack == 'B')
+			{
 				command(NULL, stack, RB);
-				// execute_and_print(NULL, stack, RB);
+				info->ans = upgrade_ans(info, RB);
+			}
 			step--;
 		}
 	}
@@ -36,11 +40,15 @@ void	rotate_min_steps(t_list *stack, long step, int which_stack)
 		while (step < 0)
 		{
 			if (which_stack == 'A')
+			{
 				command(stack, NULL, RRA);
-				// execute_and_print(stack, NULL, RRA);
+				info->ans = upgrade_ans(info, RRA);
+			}
 			else if (which_stack == 'B')
+			{
 				command(NULL, stack, RRB);
-				// execute_and_print(NULL, stack, RRB);
+				info->ans = upgrade_ans(info, RRB);
+			}
 			step++;
 		}
 	}
