@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:35:33 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/08 16:12:53 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/11 10:08:45 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,11 @@ void	rotate_min_steps(t_list *stack, long step, int which_stack)
 		while (step > 0)
 		{
 			if (which_stack == 'A')
-				execute_and_print(stack, NULL, RA);
+				command(stack, NULL, RA);
+				// execute_and_print(stack, NULL, RA);
 			else if (which_stack == 'B')
-				execute_and_print(NULL, stack, RB);
+				command(NULL, stack, RB);
+				// execute_and_print(NULL, stack, RB);
 			step--;
 		}
 	}
@@ -34,9 +36,11 @@ void	rotate_min_steps(t_list *stack, long step, int which_stack)
 		while (step < 0)
 		{
 			if (which_stack == 'A')
-				execute_and_print(stack, NULL, RRA);
+				command(stack, NULL, RRA);
+				// execute_and_print(stack, NULL, RRA);
 			else if (which_stack == 'B')
-				execute_and_print(NULL, stack, RRB);
+				command(NULL, stack, RRB);
+				// execute_and_print(NULL, stack, RRB);
 			step++;
 		}
 	}
@@ -48,11 +52,13 @@ void	ra(t_list *stack1, t_list *stack2, ssize_t p)
 	if (stack2->next->ordinal != -1 && stack2->next->ordinal <= p)
 	{
 		// printf("p: %ld\n", stack2->next->ordinal);
-		execute_and_print(stack1, stack2, RR);
+		command(stack1, stack2, RR);
+		// execute_and_print(stack1, stack2, RR);
 	}
 	else
 	{
-		execute_and_print(stack1, NULL, RA);
+		command(stack1, NULL, RA);
+		// execute_and_print(stack1, NULL, RA);
 	}
 }
 

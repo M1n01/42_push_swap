@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:16:09 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/05 12:42:28 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/10 22:21:27 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,32 @@
 
 static void	dfs(t_list *stack1, t_list *stack2, t_info *info, size_t turn);
 
+static void	update_ans(t_info *info, size_t turn)
+{
+	size_t	i;
+
+	if (info->ans != NULL)
+		safer_free(info->ans);
+	info->ans = malloc(sizeof(size_t) * (turn));
+	if (!info->ans)
+		malloc_error(info);
+	i = 0;
+	while (i < turn)
+	{
+		info->ans[i] = info->tmp[i];
+		i++;
+	}
+	info->turn = turn;
+	return ;
+}
+
 void	sort_short(t_list *stack1, t_list *stack2)
 {
 	t_info	*info;
 
 	info = init_info();
 	dfs(stack1, stack2, info, 0);
-	print_ans(info, info->turn);
+	print_ans(info);
 	free_info(info);
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 00:11:08 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/10 20:03:55 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/11 10:06:41 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,7 @@ size_t	stack_size(t_list *stack);
 
 void	print_command(int command);
 bool	is_sorted(t_list *stack, int order);
-void	print_ans(t_info *info, size_t turn);
-void	update_ans(t_info *info, size_t turn);
+void	print_ans(t_info *info);
 int		ch_cmd(int command);
 bool	exec_cmd(t_list *stack1, t_list *stack2, int command);
 bool	is_detour(int cmd, t_info *info);
@@ -87,13 +86,13 @@ t_list	*search_ordinal(t_list *stack, ssize_t value);
 t_list	*find_max(t_list *stack);
 t_list	*find_min(t_list *stack);
 
-void	set_stack(t_list *stack1, t_list *stack2);
 void	opt_swap(t_list *stack1, t_list *stack2, int command);
 
-void	execute_and_print(t_list *stack1, t_list *stack2, int command);
+void	command(t_list *stack1, t_list *stack2, int command);
 bool	is_middle(t_list *list, ssize_t pivot);
 bool	is_bottom(t_list *list, ssize_t pivot);
 bool	is_top(t_list *list, ssize_t pivot);
 bool	is_swap(t_list *stack);
+int	*upgrade_ans(t_info *info, int command);
 
 # endif

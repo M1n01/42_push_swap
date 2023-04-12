@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 12:50:13 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/08 13:15:29 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/10 22:19:30 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,6 @@
 #include "../include/push_swap.h"
 
 #include "../include/debug.h"
-
-void	update_ans(t_info *info, size_t turn)
-{
-	size_t	i;
-
-	if (info->ans != NULL)
-		safer_free(info->ans);
-	info->ans = malloc(sizeof(size_t) * (turn));
-	if (!info->ans)
-		malloc_error(info);
-	i = 0;
-	while (i < turn)
-	{
-		info->ans[i] = info->tmp[i];
-		i++;
-	}
-	info->turn = turn;
-	return ;
-}
 
 bool	is_detour(int cmd, t_info *info)
 {
@@ -60,16 +41,4 @@ bool	is_detour(int cmd, t_info *info)
 	if (cmd == RRR && (info->pre == RA || info->pre == RB || info->pre == RR))
 		return (true);
 	return (false);
-}
-
-void	print_ans(t_info *info, size_t turn)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < turn)
-	{
-		print_command(info->ans[i]);
-		i++;
-	}
 }
