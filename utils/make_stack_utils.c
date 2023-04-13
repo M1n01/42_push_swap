@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 19:05:46 by minabe            #+#    #+#             */
-/*   Updated: 2023/03/10 16:27:14 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/13 22:09:25 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ ssize_t	*compression(int *array, size_t	size)
 	}
 	sort(array_cp, size);
 	rank(array, array_cp, coordinate, size);
+	safer_free(array_cp);
 	return (coordinate);
 }
 

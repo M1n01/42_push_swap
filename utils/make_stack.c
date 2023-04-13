@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 08:53:25 by minabe            #+#    #+#             */
-/*   Updated: 2023/03/25 05:59:27 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/13 22:08:29 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ t_list	*make_stack1(int ac, char *av[])
 		lstadd_tail(stack, array[i], coordinate[i]);
 		i++;
 	}
-	free(array);
-	free(coordinate);
+	safer_free(array);
+	safer_free(coordinate);
 	return (stack);
 }
 

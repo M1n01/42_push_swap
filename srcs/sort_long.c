@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:25:54 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/13 20:32:26 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/13 21:48:36 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 #include "../include/debug.h"
 
-static t_info	*init_inf(void)
+static t_info	*init_info_long_ver(void)
 {
 	size_t	i;
 	t_info	*info;
@@ -24,9 +24,7 @@ static t_info	*init_inf(void)
 	info = malloc(sizeof(t_info));
 	if (!info)
 		malloc_error(info);
-	info->tmp = malloc(sizeof(int));
-	if (info->tmp == NULL)
-		malloc_error(info->tmp);
+	info->tmp = NULL;
 	i = 0;
 	while (i < info->turn)
 	{
@@ -71,7 +69,7 @@ void	sort_long(t_list *stack1, t_list *stack2)
 {
 	t_info	*info;
 
-	info = init_inf();
+	info = init_info_long_ver();
 	// printLists(stack1, stack2);
 	set_stack(stack1, stack2, info);
 	// printLists(stack1, stack2);

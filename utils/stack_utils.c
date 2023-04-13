@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:50:21 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/08 13:36:31 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/13 22:00:11 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,20 @@ bool	is_sorted(t_list *stack, int order)
 		stack = stack->next;
 	}
 	return (true);
+}
+
+void	free_stack(t_list *stack)
+{
+	t_list	*head;
+	t_list	*tmp;
+
+	head = stack;
+	stack = stack->next;
+	while (stack != head)
+	{
+		tmp = stack;
+		stack = stack->next;
+		safer_free(tmp);
+	}
+	safer_free(stack);
 }
