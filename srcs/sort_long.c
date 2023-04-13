@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:25:54 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/13 15:07:45 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/13 20:32:26 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,40 +48,20 @@ void	ans_optimize(t_info *info)
 	// count = 0;
 	while (i < info->turn - 1)
 	{
-		if ((info->ans[i] == RA && info->ans[i + 1] == RB) || (info->ans[i] == RB && info->ans[i + 1] == RA))
+		if ((info->ans[i - 1] == RA && info->ans[i] == PB) &&\
+			(info->ans[i] == PB && info->ans[i + 1] == RRA))
 		{
-			// info->ans[i] = RRに書き直し、全部ずらす
-			info->ans[i] = RR;
+			info->ans[i - 1] = SA;
 			ft_memcpy(info->ans + i + 1, info->ans + i + 2, info->turn - i - 2);
 			info->turn--;
-			// count++;
 		}
-		else if ((info->ans[i] == RRA && info->ans[i + 1] == RRB) || (info->ans[i] == RRB && info->ans[i + 1] == RRA))
+		if ((info->ans[i - 1] == RB && info->ans[i] == PA) &&\
+			(info->ans[i] == PA && info->ans[i + 1] == RRB))
 		{
-			// info->ans[i] = RRRに書き直し、全部ずらす
-			info->ans[i] = RRR;
+			info->ans[i - 1] = SB;
 			ft_memcpy(info->ans + i + 1, info->ans + i + 2, info->turn - i - 2);
 			info->turn--;
-			// count++;
 		}
-		else if ((info->ans[i] == SA && info->ans[i + 1] == SB) || (info->ans[i] == SB && info->ans[i + 1] == SA))
-		{
-			// info->ans[i] = SSに書き直し、全部ずらす
-			info->ans[i] = SS;
-			ft_memcpy(info->ans + i + 1, info->ans + i + 2, info->turn - i - 2);
-			info->turn--;
-			// count++;
-		}
-		// else if ((info->ans[i] == RA && info->ans[i + 1] == RRA) || (info->ans[i] == RRA && info->ans[i + 1] == RA))
-		// {
-		// 	ft_memcpy(info->ans + i, info->ans + i + 2, info->turn - i - 2);
-		// 	info->turn -= 2;
-		// }
-		// else if ((info->ans[i] == RB && info->ans[i + 1] == RRB) || (info->ans[i] == RRB && info->ans[i + 1] == RB))
-		// {
-		// 	ft_memcpy(info->ans + i, info->ans + i + 2, info->turn - i - 2);
-		// 	info->turn -= 2;
-		// }
 		i++;
 	}
 	// printf("count = %zu\n", count);
@@ -104,5 +84,7 @@ void	sort_long(t_list *stack1, t_list *stack2)
 	safer_free(info->ans);
 	safer_free(info);
 	// printLists(stack1, stack2);
+	// if (is_sorted(stack1, ASC))
+	// 	puts("OK");
 	return ;
 }

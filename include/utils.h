@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 00:11:08 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/12 22:54:12 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/13 19:02:26 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,6 @@ bool	is_top(t_list *list, ssize_t pivot);
 bool	is_swap(t_list *stack);
 int		*add_ans(t_info *info, int command);
 void	record_command(t_list *stack1, t_list *stack2, t_info *info, int cmd);
+t_list	*find_min_more_than_pivot(t_list *stack, ssize_t pivot);
 
 # endif

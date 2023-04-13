@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:21:58 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/12 23:03:32 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/13 16:49:32 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,34 @@ int	*add_ans(t_info *info, int command)
 void	record_command(t_list *stack1, t_list *stack2, t_info *info, int cmd)
 {
 	command(stack1, stack2, cmd);
-	info->ans = add_ans(info, cmd);
+	if ((cmd == RA && info->pre == RRA) || (cmd == RRA && info->pre == RA) ||\
+		(cmd == RB && info->pre == RRB) || (cmd == RRB && info->pre == RB) ||\
+		(cmd == RR && info->pre == RRR) || (cmd == RRR && info->pre == RR) ||\
+		(cmd == SA && info->pre == SA) || (cmd == SB && info->pre == SB) ||\
+		(cmd == SS && info->pre == SS) || (cmd == PA && info->pre == PB) ||\
+		(cmd == PB && info->pre == PA))
+	{
+		info->pre = -1;
+		info->turn--;
+	}
+	else if ((cmd == RA && info->pre == RB) || (cmd == RB && info->pre == RA))
+	{
+		info->ans[info->turn - 1] = RR;
+		info->pre = RR;
+	}
+	else if ((cmd == RRA && info->pre == RRB) || (cmd == RRB && info->pre == RRA))
+	{
+		info->ans[info->turn - 1] = RRR;
+		info->pre = RRR;
+	}
+	else if ((cmd == SA && info->pre == SB) || (cmd == SB && info->pre == SA))
+	{
+		info->ans[info->turn - 1] = SS;
+		info->pre = SS;
+	}
+	else
+	{
+		info->ans = add_ans(info, cmd);
+		info->pre = cmd;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 23:21:44 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/13 14:58:29 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/13 19:53:26 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	set_stack(t_list *stack1, t_list *stack2, t_info *info)
 	}
 }
 
-t_list	*find_pivot_min(t_list *stack, ssize_t pivot)
+t_list	*find_min_more_than_pivot(t_list *stack, ssize_t pivot)
 {
 	t_list	*min;
 
@@ -71,7 +71,7 @@ t_list	*find_pivot_min(t_list *stack, ssize_t pivot)
 	return (min);
 }
 
-t_list	*find_pivot_max(t_list *stack, ssize_t pivot)
+t_list	*find_max_less_than_pivot(t_list *stack, ssize_t pivot)
 {
 	t_list	*max;
 
@@ -83,42 +83,6 @@ t_list	*find_pivot_max(t_list *stack, ssize_t pivot)
 		stack = stack->next;
 	}
 	return (max);
-}
-
-void	stack_bottom_third_sort(t_list *stack1, t_list *stack2, t_info *info)
-{
-	t_list	*min;
-	t_list	*max;
-	long	step;
-	size_t	remain;
-
-	while (stack_size(stack1) > 0)
-	{
-		min = find_min(stack1);
-		max = find_max(stack1);
-		if (ABS(cal_steps(stack1, min)) <= ABS(cal_steps(stack1, max)))
-		{
-			step = cal_steps(stack1, min);
-			rotate_min_steps(stack1, step, 'A', info);
-			record_command(stack1, stack2, info, PB);
-		}
-		else
-		{
-			step = cal_steps(stack1, max);
-			rotate_min_steps(stack1, step, 'A', info);
-			record_command(stack1, stack2, info, PB);
-			record_command(NULL, stack2, info, RB);
-		}
-	}
-	remain = (stack_size(stack2) + 2) / 3;
-	while (stack_size(stack1) < remain)
-	{
-		max = find_max(stack2);
-		step = cal_steps(stack2, max);
-		rotate_min_steps(stack2, step, 'B', info);
-		record_command(stack1, stack2, info, PA);
-	}
-	return ;
 }
 
 void	stack_middle_third_sort(t_list *stack1, t_list *stack2, t_info *info)
@@ -133,7 +97,7 @@ void	stack_middle_third_sort(t_list *stack1, t_list *stack2, t_info *info)
 	pivot = (stack_size(stack2) + 1) / 2;
 	while (stack_size(stack2) > pivot)
 	{
-		min = find_pivot_min(stack2, pivot);
+		min = find_min_more_than_pivot(stack2, pivot);
 		max = find_max(stack2);
 		if (ABS(cal_steps(stack2, min)) <= ABS(cal_steps(stack2, max)))
 		{
