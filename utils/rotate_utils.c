@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:35:33 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/13 14:59:03 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/13 23:17:52 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,57 +20,23 @@ void	rotate_min_steps(t_list *stack, long step, int which_stack, t_info *info)
 {
 	if (step >= 0)
 	{
-		while (step > 0)
+		while (step--)
 		{
 			if (which_stack == 'A')
-			{
 				record_command(stack, NULL, info, RA);
-				// command(stack, NULL, RA);
-				// info->ans = add_ans(info, RA);
-			}
-			else if (which_stack == 'B')
-			{
+			if (which_stack == 'B')
 				record_command(NULL, stack, info, RB);
-				// command(NULL, stack, RB);
-				// info->ans = add_ans(info, RB);
-			}
-			step--;
 		}
 	}
 	else
 	{
-		while (step < 0)
+		while (step++)
 		{
 			if (which_stack == 'A')
-			{
 				record_command(stack, NULL, info, RRA);
-				// command(stack, NULL, RRA);
-				// info->ans = add_ans(info, RRA);
-			}
-			else if (which_stack == 'B')
-			{
+			if (which_stack == 'B')
 				record_command(NULL, stack, info, RRB);
-				// command(NULL, stack, RRB);
-				// info->ans = add_ans(info, RRB);
-			}
-			step++;
 		}
-	}
-}
-
-void	ra(t_list *stack1, t_list *stack2, ssize_t p)
-{
-	// stack2の先頭がpivot/2より大きい場合、rrを実行
-	if (stack2->next->ordinal != -1 && stack2->next->ordinal <= p)
-	{
-		// printf("p: %ld\n", stack2->next->ordinal);
-		command(stack1, stack2, RR);
-		// execute_and_print(stack1, stack2, RR);
-	}
-	else
-	{
-		command(stack1, NULL, RA);
-		// execute_and_print(stack1, NULL, RA);
 	}
 }
 
@@ -111,7 +77,6 @@ long	cal_steps(t_list *stack, t_list *find)
 
 	rotate = count_rotate(stack, find);
 	rev_rotate = count_rev_rotate(stack, find);
-	// printf("rotate: %ld, rev_rotate: %ld\n", rotate, rev_rotate);
 	if (rotate <= rev_rotate)
 		return (rotate);
 	else

@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 00:11:08 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/13 22:57:39 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/14 00:18:06 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,7 @@ t_list	*find_min_more_than_pivot(t_list *stack, ssize_t pivot);
 
 void	free_stack(t_list *stack);
 void	ans_optimize(t_info *info);
+
+void	find_max_and_pa(t_list *stack1, t_list *stack2, t_info *info);
 
 # endif
