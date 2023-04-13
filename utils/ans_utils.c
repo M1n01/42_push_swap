@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:21:58 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/11 18:43:20 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/12 23:03:32 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	print_ans(t_info *info)
 	}
 }
 
-int	*upgrade_ans(t_info *info, int command)
+int	*add_ans(t_info *info, int command)
 {
 	int		*ans;
 
@@ -72,23 +72,8 @@ int	*upgrade_ans(t_info *info, int command)
 	return (ans);
 }
 
-// void	record_command(t_list *stack1, t_list *stack2, t_info *info, int command)
-// {
-// 	if (info->turn == 0)
-// 	{
-// 		info->ans = malloc(sizeof(size_t));
-// 		if (!info->ans)
-// 			malloc_error(info->ans);
-// 		info->ans[info->turn] = command;
-// 		info->turn++;
-// 	}
-// 	else
-// 	{
-// 		info->ans = ft_realloc(info->ans, sizeof(size_t) * (info->turn + 1));
-// 		if (!info->ans)
-// 			malloc_error(info->ans);
-// 		info->ans[info->turn] = command;
-// 		info->turn++;
-// 	}
-// 	command(stack1, stack2, command);
-// }
+void	record_command(t_list *stack1, t_list *stack2, t_info *info, int cmd)
+{
+	command(stack1, stack2, cmd);
+	info->ans = add_ans(info, cmd);
+}

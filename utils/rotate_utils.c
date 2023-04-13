@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:35:33 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/12 15:10:21 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/13 14:59:03 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,15 @@ void	rotate_min_steps(t_list *stack, long step, int which_stack, t_info *info)
 		{
 			if (which_stack == 'A')
 			{
-				command(stack, NULL, RA);
-				info->ans = upgrade_ans(info, RA);
+				record_command(stack, NULL, info, RA);
+				// command(stack, NULL, RA);
+				// info->ans = add_ans(info, RA);
 			}
 			else if (which_stack == 'B')
 			{
-				command(NULL, stack, RB);
-				info->ans = upgrade_ans(info, RB);
+				record_command(NULL, stack, info, RB);
+				// command(NULL, stack, RB);
+				// info->ans = add_ans(info, RB);
 			}
 			step--;
 		}
@@ -41,13 +43,15 @@ void	rotate_min_steps(t_list *stack, long step, int which_stack, t_info *info)
 		{
 			if (which_stack == 'A')
 			{
-				command(stack, NULL, RRA);
-				info->ans = upgrade_ans(info, RRA);
+				record_command(stack, NULL, info, RRA);
+				// command(stack, NULL, RRA);
+				// info->ans = add_ans(info, RRA);
 			}
 			else if (which_stack == 'B')
 			{
-				command(NULL, stack, RRB);
-				info->ans = upgrade_ans(info, RRB);
+				record_command(NULL, stack, info, RRB);
+				// command(NULL, stack, RRB);
+				// info->ans = add_ans(info, RRB);
 			}
 			step++;
 		}

@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:25:54 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/12 15:11:44 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/13 15:07:45 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,54 @@ static t_info	*init_inf(void)
 	return (info);
 }
 
+void	ans_optimize(t_info *info)
+{
+	size_t	i;
+	// size_t	count;
+
+	i = 0;
+	// count = 0;
+	while (i < info->turn - 1)
+	{
+		if ((info->ans[i] == RA && info->ans[i + 1] == RB) || (info->ans[i] == RB && info->ans[i + 1] == RA))
+		{
+			// info->ans[i] = RRに書き直し、全部ずらす
+			info->ans[i] = RR;
+			ft_memcpy(info->ans + i + 1, info->ans + i + 2, info->turn - i - 2);
+			info->turn--;
+			// count++;
+		}
+		else if ((info->ans[i] == RRA && info->ans[i + 1] == RRB) || (info->ans[i] == RRB && info->ans[i + 1] == RRA))
+		{
+			// info->ans[i] = RRRに書き直し、全部ずらす
+			info->ans[i] = RRR;
+			ft_memcpy(info->ans + i + 1, info->ans + i + 2, info->turn - i - 2);
+			info->turn--;
+			// count++;
+		}
+		else if ((info->ans[i] == SA && info->ans[i + 1] == SB) || (info->ans[i] == SB && info->ans[i + 1] == SA))
+		{
+			// info->ans[i] = SSに書き直し、全部ずらす
+			info->ans[i] = SS;
+			ft_memcpy(info->ans + i + 1, info->ans + i + 2, info->turn - i - 2);
+			info->turn--;
+			// count++;
+		}
+		// else if ((info->ans[i] == RA && info->ans[i + 1] == RRA) || (info->ans[i] == RRA && info->ans[i + 1] == RA))
+		// {
+		// 	ft_memcpy(info->ans + i, info->ans + i + 2, info->turn - i - 2);
+		// 	info->turn -= 2;
+		// }
+		// else if ((info->ans[i] == RB && info->ans[i + 1] == RRB) || (info->ans[i] == RRB && info->ans[i + 1] == RB))
+		// {
+		// 	ft_memcpy(info->ans + i, info->ans + i + 2, info->turn - i - 2);
+		// 	info->turn -= 2;
+		// }
+		i++;
+	}
+	// printf("count = %zu\n", count);
+}
+
 void	sort_long(t_list *stack1, t_list *stack2)
 {
 	t_info	*info;
@@ -50,6 +98,7 @@ void	sort_long(t_list *stack1, t_list *stack2)
 	stack_bottom_third_sort(stack1, stack2, info);
 	stack_middle_third_sort(stack1, stack2, info);
 	stack_top_third_sort(stack1, stack2, info);
+	ans_optimize(info);
 	print_ans(info);
 	safer_free(info->tmp);
 	safer_free(info->ans);
