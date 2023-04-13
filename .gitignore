@@ -6,5 +6,5 @@ a.out*
 .vscode
 .DS_Store
 *.o
-push_swap_tester
+*tester*
 */debug*

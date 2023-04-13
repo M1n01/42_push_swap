@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 23:21:44 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/13 19:53:26 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/13 21:39:41 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,25 +157,4 @@ void	stack_top_third_sort(t_list *stack1, t_list *stack2, t_info *info)
 	{
 		record_command(stack1, NULL, info, RRA);
 	}
-}
-
-void	command(t_list *stack1, t_list *stack2, int command)
-{
-	if (command == SA || command == SS)
-		swap(stack1);
-	if (command == SB || command == SS)
-		swap(stack2);
-	if (command == PA)
-		push(stack2, stack1);
-	if (command == PB)
-		push(stack1, stack2);
-	if (command == RA || command == RR)
-		rotate(stack1);
-	if (command == RB || command == RR)
-		rotate(stack2);
-	if (command == RRA || command == RRR)
-		rev_rotate(stack1);
-	if (command == RRB || command == RRR)
-		rev_rotate(stack2);
-	// print_command(command);
 }
