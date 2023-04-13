@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 08:53:25 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/13 22:08:29 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/13 22:54:06 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	lstadd_tail(t_list *stack, int value, ssize_t coodinate)
 	t_list	*new;
 
 	head = stack;
-	tail = search_tail(stack);
+	tail = find_tail(stack);
 	new = malloc(sizeof(t_list));
 	if (new == NULL)
 		malloc_error(new);

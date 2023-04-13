@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 12:49:11 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/08 12:56:53 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/13 22:53:48 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 #include "../include/debug.h"
 
-t_list	*search_tail(t_list	*stack)
+t_list	*find_tail(t_list	*stack)
 {
 	while (stack->next->ordinal != -1)
 		stack = stack->next;
@@ -51,7 +51,7 @@ t_list	*find_min(t_list *stack)
 	return (min);
 }
 
-t_list	*search_ordinal(t_list *stack, ssize_t value)
+t_list	*find_ordinal(t_list *stack, ssize_t value)
 {
 	while (stack->next->ordinal != -1)
 	{

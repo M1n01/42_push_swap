@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:21:58 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/13 21:22:00 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/13 22:59:10 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,36 +15,6 @@
 #include "../include/push_swap.h"
 
 #include "../include/debug.h"
-
-t_info	*init_info(void)
-{
-	size_t	i;
-	t_info	*info;
-
-	info = malloc(sizeof(t_info));
-	if (!info)
-		malloc_error(info);
-	info->turn = LIMIT_SHORT;
-	info->tmp = malloc(sizeof(int) * (info->turn));
-	if (info->tmp == NULL)
-		malloc_error(info->tmp);
-	i = 0;
-	while (i < info->turn)
-	{
-		info->tmp[i] = -1;
-		i++;
-	}
-	info->ans = NULL;
-	info->pre = -1;
-	return (info);
-}
-
-void	free_info(t_info *info)
-{
-	safer_free(info->tmp);
-	safer_free(info->ans);
-	safer_free(info);
-}
 
 void	print_ans(t_info *info)
 {
@@ -104,5 +74,30 @@ void	record_command(t_list *stack1, t_list *stack2, t_info *info, int cmd)
 	{
 		info->ans = add_ans(info, cmd);
 		info->pre = cmd;
+	}
+}
+
+void	ans_optimize(t_info *info)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < info->turn - 1)
+	{
+		if ((info->ans[i - 1] == RA && info->ans[i] == PB) &&\
+			(info->ans[i] == PB && info->ans[i + 1] == RRA))
+		{
+			info->ans[i - 1] = SA;
+			ft_memcpy(info->ans + i + 1, info->ans + i + 2, info->turn - i - 2);
+			info->turn--;
+		}
+		if ((info->ans[i - 1] == RB && info->ans[i] == PA) &&\
+			(info->ans[i] == PA && info->ans[i + 1] == RRB))
+		{
+			info->ans[i - 1] = SB;
+			ft_memcpy(info->ans + i + 1, info->ans + i + 2, info->turn - i - 2);
+			info->turn--;
+		}
+		i++;
 	}
 }

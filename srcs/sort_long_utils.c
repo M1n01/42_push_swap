@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 23:21:44 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/13 21:39:41 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/13 23:04:09 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,28 +32,13 @@ void	set_stack(t_list *stack1, t_list *stack2, t_info *info)
 		if (!is_bottom(stack1->next, pivot))
 		{
 			record_command(stack1, stack2, info, PB);
-			// command(stack1, stack2, PB);
-			// info->ans = add_ans(info, PB);
 			if (is_top(stack2->next, pivot) && is_bottom(stack1->next, pivot))
-			{
 				record_command(stack1, stack2, info, RR);
-				// command(stack1, stack2, RR);
-				// info->ans = add_ans(info, RR);
-			}
 			else if (is_top(stack2->next, pivot))
-			{
 				record_command(NULL, stack2, info, RB);
-				// command(NULL, stack2, RB);
-				// info->ans = add_ans(info, RB);
-			}
 		}
 		else
-		{
 			record_command(stack1, NULL, info, RA);
-			// command(stack1, NULL, RA);
-			// info->ans = add_ans(info, RA);
-		}
-		// printLists(stack1, stack2);
 	}
 }
 
@@ -91,9 +76,7 @@ void	stack_middle_third_sort(t_list *stack1, t_list *stack2, t_info *info)
 	t_list	*max;
 	long	step;
 	size_t	pivot;
-	size_t	rotate;
 
-	rotate = 0;
 	pivot = (stack_size(stack2) + 1) / 2;
 	while (stack_size(stack2) > pivot)
 	{
@@ -105,7 +88,6 @@ void	stack_middle_third_sort(t_list *stack1, t_list *stack2, t_info *info)
 			rotate_min_steps(stack2, step, 'B', info);
 			record_command(stack1, stack2, info, PA);
 			record_command(stack1, NULL, info, RA);
-			rotate++;
 		}
 		else
 		{
@@ -114,20 +96,16 @@ void	stack_middle_third_sort(t_list *stack1, t_list *stack2, t_info *info)
 			record_command(stack1, stack2, info, PA);
 		}
 	}
-	while (rotate-- > 0)
-	{
-		record_command(stack1, NULL, info, RRA);
-	}
+	step = cal_steps(stack1, find_min(stack1));
+	rotate_min_steps(stack1, step, 'A', info);
 }
 
 void	stack_top_third_sort(t_list *stack1, t_list *stack2, t_info *info)
 {
 	t_list	*min;
-	size_t	rotate;
 	t_list	*max;
 	long	step;
 
-	rotate = 0;
 	while ((ssize_t)stack_size(stack2) > 0)
 	{
 		min = find_min(stack2);
@@ -137,24 +115,15 @@ void	stack_top_third_sort(t_list *stack1, t_list *stack2, t_info *info)
 			step = cal_steps(stack2, min);
 			rotate_min_steps(stack2, step, 'B', info);
 			record_command(stack1, stack2, info, PA);
-			// command(stack1, stack2, PA);
-			// info->ans = add_ans(info, PA);
 			record_command(stack1, NULL, info, RA);
-			// command(stack1, stack2, RA);
-			// info->ans = add_ans(info, RA);
-			rotate++;
 		}
 		else
 		{
 			step = cal_steps(stack2, max);
 			rotate_min_steps(stack2, step, 'B', info);
 			record_command(stack1, stack2, info, PA);
-			// command(stack1, stack2, PA);
-			// info->ans = add_ans(info, PA);
 		}
 	}
-	while (rotate-- > 0)
-	{
-		record_command(stack1, NULL, info, RRA);
-	}
+	step = cal_steps(stack1, find_min(stack1));
+	rotate_min_steps(stack1, step, 'A', info);
 }

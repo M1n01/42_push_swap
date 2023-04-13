@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 00:11:08 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/13 21:58:31 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/13 22:57:39 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_list	*make_stack1(int ac, char *av[]);
 int		*make_array(int ac, char *av[]);
 ssize_t	*compression(int *array, size_t	size);
 t_list	*init_stack(void);
-t_list	*search_tail(t_list	*stack);
+t_list	*find_tail(t_list	*stack);
 
 void	swap(t_list *stack);
 void	push(t_list *from, t_list *to);
@@ -75,14 +75,16 @@ void	print_ans(t_info *info);
 int		ch_cmd(int command);
 bool	exec_cmd(t_list *stack1, t_list *stack2, int command);
 bool	is_detour(int cmd, t_info *info);
-t_info	*init_info();
+
+t_info	*init_info(void);
+t_info	*init_info_long_ver(void);
 void	free_info(t_info *cmd);
 
 ssize_t	count_rotate(t_list *stack, t_list *find);
 long	cal_steps(t_list *stack, t_list *find);
 void	rotate_min_steps(t_list *stack, long step, int which_stack, t_info *info);
 
-t_list	*search_ordinal(t_list *stack, ssize_t value);
+// t_list	*find_ordinal(t_list *stack, ssize_t value);
 t_list	*find_max(t_list *stack);
 t_list	*find_min(t_list *stack);
 
@@ -98,5 +100,6 @@ void	record_command(t_list *stack1, t_list *stack2, t_info *info, int cmd);
 t_list	*find_min_more_than_pivot(t_list *stack, ssize_t pivot);
 
 void	free_stack(t_list *stack);
+void	ans_optimize(t_info *info);
 
 # endif
