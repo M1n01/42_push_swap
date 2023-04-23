@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 00:11:08 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/14 00:18:06 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/23 23:32:26 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct	s_list
 {
 	int				value;
 	ssize_t			ordinal;
-	ssize_t			pos;
+	int				status;
 	struct s_list	*next;
 	struct s_list	*prev;
 }				t_list;
@@ -51,6 +51,13 @@ typedef enum	e_cmd
 	RRB,
 	RRR,
 }				t_cmd;
+
+typedef enum	e_status
+{
+	TOP,
+	MIDDLE,
+	BOTTOM,
+}				t_status;
 
 t_list	*make_stack1(int ac, char *av[]);
 int		*make_array(int ac, char *av[]);
@@ -84,7 +91,7 @@ ssize_t	count_rotate(t_list *stack, t_list *find);
 long	cal_steps(t_list *stack, t_list *find);
 void	rotate_min_steps(t_list *stack, long step, int which_stack, t_info *info);
 
-// t_list	*find_ordinal(t_list *stack, ssize_t value);
+t_list	*find_ordinal(t_list *stack, ssize_t value);
 t_list	*find_max(t_list *stack);
 t_list	*find_min(t_list *stack);
 
@@ -103,5 +110,8 @@ void	free_stack(t_list *stack);
 void	ans_optimize(t_info *info);
 
 void	find_max_and_pa(t_list *stack1, t_list *stack2, t_info *info);
+void	find_ordinal_and_pa(t_list *stack1, t_list *stack2, t_info *info, ssize_t value);
+void	find_ordinal_and_pb(t_list *stack1, t_list *stack2, t_info *info, ssize_t value);
+void	find_min_and_pb(t_list *stack1, t_list *stack2, t_info *info);
 
 # endif

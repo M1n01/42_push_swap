@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 08:53:25 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/13 22:54:06 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/23 10:14:34 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_list	*init_stack(void)
 	stack->prev = head;
 	stack->value = 0;
 	stack->ordinal = -1;
-	stack->pos = -1;
+	stack->status = -1;
 	stack->next = head;
 	return (stack);
 }

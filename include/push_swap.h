@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 16:44:37 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/13 21:23:21 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/23 20:35:34 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,6 @@ void	dfs(t_list *stack1, t_list *stack2, t_info *info, size_t turn);
 void	update_ans(t_info *info, size_t turn);
 
 void	sort_long(t_list *stack1, t_list *stack2);
-void	set_stack(t_list *stack1, t_list *stack2, t_info *info);
-void	stack_top_third_sort(t_list *stack1, t_list *stack2, t_info *info);
-void	stack_middle_third_sort(t_list *stack1, t_list *stack2, t_info *info);
-void	stack_bottom_third_sort(t_list *stack1, t_list *stack2, t_info *info);
 
 void	lstclear(t_list *stack);
 
