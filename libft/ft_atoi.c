@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 10:57:14 by minabe            #+#    #+#             */
-/*   Updated: 2023/02/21 23:50:25 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/24 23:27:30 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	ft_atoi(const char *str)
 
 static void	error(void)
 {
-	ft_printf("Error.\n");
+	ft_printf("Error\n");
 	exit(1);
 	return ;
 }
