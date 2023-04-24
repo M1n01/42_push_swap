@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:25:54 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/24 21:19:12 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/24 23:04:18 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,18 @@ void	sort_long(t_list *stack1, t_list *stack2)
 {
 	t_info	*info;
 	size_t	size;
+	size_t	i;
 
 	info = init_info_long_ver();
 	size = stack_size(stack1) * 3 / 10;
 	classify_into_three(stack1, stack2, info);
 	bottom_sort(stack1, stack2, info);
-	middle_sort(stack1, stack2, info, size);
-	middle_sort(stack1, stack2, info, size);
+	i = 0;
+	while (i < 2)
+	{
+		middle_sort(stack1, stack2, info, size);
+		i++;
+	}
 	top_sort(stack1, stack2, info);
 	ans_optimize(info);
 	print_ans(info);
