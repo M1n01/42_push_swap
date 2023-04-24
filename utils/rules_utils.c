@@ -6,15 +6,13 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:54:43 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/08 12:56:32 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/24 20:53:01 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 #include "../include/utils.h"
 #include "../include/push_swap.h"
-
-#include "../include/debug.h"
 
 t_list	*lstdelone_node(t_list *trash)
 {

@@ -6,15 +6,13 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 19:05:46 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/13 22:09:25 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/24 20:52:48 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 #include "../include/utils.h"
 #include "../include/push_swap.h"
-
-#include "../include/debug.h"
 
 static void	sort(int *array, size_t size);
 static void	int_swap(int *big, int *small);

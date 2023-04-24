@@ -6,15 +6,13 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 16:05:10 by minabe            #+#    #+#             */
-/*   Updated: 2023/03/11 13:21:06 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/24 20:53:06 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 #include "../include/utils.h"
 #include "../include/push_swap.h"
-
-#include "../include/debug.h"
 
 void	swap(t_list *stack)
 {

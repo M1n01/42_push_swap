@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:35:33 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/13 23:17:52 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/24 20:52:57 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,15 @@
 #include "../include/utils.h"
 #include "../include/push_swap.h"
 
-#include "../include/debug.h"
-
-void	rotate_min_steps(t_list *stack, long step, int which_stack, t_info *info)
+void	rotate_min_steps(t_list *stack, long step, char which, t_info *info)
 {
 	if (step >= 0)
 	{
 		while (step--)
 		{
-			if (which_stack == 'A')
+			if (which == 'A')
 				record_command(stack, NULL, info, RA);
-			if (which_stack == 'B')
+			if (which == 'B')
 				record_command(NULL, stack, info, RB);
 		}
 	}
@@ -32,9 +30,9 @@ void	rotate_min_steps(t_list *stack, long step, int which_stack, t_info *info)
 	{
 		while (step++)
 		{
-			if (which_stack == 'A')
+			if (which == 'A')
 				record_command(stack, NULL, info, RRA);
-			if (which_stack == 'B')
+			if (which == 'B')
 				record_command(NULL, stack, info, RRB);
 		}
 	}

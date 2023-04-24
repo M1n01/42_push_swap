@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bool_ordinal.c                                     :+:      :+:    :+:   */
+/*   top_sort.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/10 12:08:35 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/13 22:44:15 by minabe           ###   ########.fr       */
+/*   Created: 2023/04/24 20:40:25 by minabe            #+#    #+#             */
+/*   Updated: 2023/04/24 21:18:34 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,18 @@
 #include "../include/utils.h"
 #include "../include/push_swap.h"
 
-#include "../include/debug.h"
-
-bool	is_middle(t_list *list, ssize_t pivot)
+void	top_sort(t_list *stack1, t_list *stack2, t_info *info)
 {
-	if (list->ordinal > (pivot - 1) / 2)
-		return (true);
-	return (false);
-}
+	size_t	size;
+	size_t	push_count;
 
-bool	is_bottom(t_list *list, ssize_t pivot)
-{
-	if (list->ordinal >= pivot)
-		return (true);
-	return (false);
-}
-
-bool	is_top(t_list *list, ssize_t pivot)
-{
-	if (list->ordinal < (pivot - 1) / 2)
-		return (true);
-	return (false);
+	push_count = 0;
+	size = stack_size(stack1) / 5;
+	while (push_count < size)
+	{
+		find_min_and_pb(stack1, stack2, info);
+		push_count++;
+	}
+	while (stack_size(stack2) > 0)
+		record_command(stack1, stack2, info, PA);
 }

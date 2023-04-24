@@ -1,30 +1,32 @@
 NAME = push_swap
 
 CC = cc
-INCDIR = ./include
-SRCDIR = ./srcs
-UTILDIR = ./utils
-LIBDIR = ./utils
-
 CFLAGS = -Wall -Wextra -Werror $(addprefix -I,$(INCDIR))
 
+INCDIR = ./include
 INC = $(shell find $(INCDIR) -name "*.h" -type f | xargs)
+
+SRCDIR = ./srcs
 SRCS = $(shell find $(SRCDIR) -name "*.c" -type f | xargs)
-UTILS = $(shell find $(UTILDIR) -name "*.c" -type f | xargs)
-
-LIB = ./libft/libft.a
-
 OBJS = $(SRCS:%.c=%.o)
+
+UTILDIR = ./utils
+UTILS = $(shell find $(UTILDIR) -name "*.c" -type f | xargs)
 UTILS_OBJ = $(UTILS:%.c=%.o)
 
-$(NAME): $(OBJS) $(UTILS_OBJ)
-		$(MAKE) -C ./libft
-		$(CC) $(CFLAGS) $(SRCS) $(UTILS) $(LIB) -o $(NAME)
+LIBDIR = ./libft
+LIBFT = $(LIBDIR)/libft.a
 
 all: $(NAME)
 
+$(NAME): $(OBJS) $(UTILS_OBJ) $(LIBFT)
+		$(CC) $(CFLAGS) $(SRCS) $(UTILS) $(LIBFT) -o $(NAME)
+
+$(LIBFT):
+		$(MAKE) -C $(LIBDIR)
+
 clean:
-		$(MAKE) clean -C ./libft
+		$(MAKE) fclean -C $(LIBDIR)
 		$(RM) $(OBJS) $(B_OBJS) $(UTILS_OBJ)
 
 fclean: clean
@@ -35,8 +37,4 @@ re: fclean all
 debug: CFLAGS += -g -fsanitize=address,leak
 debug: re
 
-norm:
-		@norminette -R CheckForbiddenSourceHeader $(SRCS) $(B_SRCS) $(UTILS)
-		@norminette -R CheckDefine $(INC)
-
-.PHONY: all clean fclean re bonus norm debug
+.PHONY: all clean fclean re debug

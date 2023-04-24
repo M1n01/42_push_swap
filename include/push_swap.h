@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/03 16:44:37 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/23 20:35:34 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/24 21:27:18 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,7 @@
 # include "./libft.h"
 # include "./utils.h"
 
-#include "./debug.h"
-
 # define LIMIT_SHORT 12
-# define LIMIT_LONG 30
 # define ASC 1
 # define DESC 2
 
@@ -32,7 +29,8 @@ void	dfs(t_list *stack1, t_list *stack2, t_info *info, size_t turn);
 void	update_ans(t_info *info, size_t turn);
 
 void	sort_long(t_list *stack1, t_list *stack2);
-
-void	lstclear(t_list *stack);
+void	bottom_sort(t_list *stack1, t_list *stack2, t_info *info);
+void	middle_sort(t_list *stack1, t_list *stack2, t_info *info, size_t size);
+void	top_sort(t_list *stack1, t_list *stack2, t_info *info);
 
 #endif

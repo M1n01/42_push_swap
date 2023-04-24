@@ -6,15 +6,13 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 10:34:45 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/13 21:58:05 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/24 20:52:03 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 #include "../include/utils.h"
 #include "../include/push_swap.h"
-
-#include "../include/debug.h"
 
 void	push_swap(t_list *stack1, t_list *stack2, size_t size);
 
@@ -28,7 +26,6 @@ int	main(int ac, char *av[])
 	push_swap(stack1, stack2, ac - 1);
 	free_stack(stack1);
 	free_stack(stack2);
-	// system("leaks -q a.out");
 	return (0);
 }
 

@@ -6,15 +6,13 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 00:43:42 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/13 21:33:14 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/24 21:38:03 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 #include "../include/utils.h"
 #include "../include/push_swap.h"
-
-#include "../include/debug.h"
 
 int	ch_cmd(int cmd)
 {

@@ -6,15 +6,13 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:50:21 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/13 22:00:11 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/24 20:53:09 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 #include "../include/utils.h"
 #include "../include/push_swap.h"
-
-#include "../include/debug.h"
 
 size_t	stack_size(t_list *stack)
 {

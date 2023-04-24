@@ -6,15 +6,13 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 15:16:09 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/13 21:58:15 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/24 20:52:20 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 #include "../include/utils.h"
 #include "../include/push_swap.h"
-
-#include "../include/debug.h"
 
 void	sort_short(t_list *stack1, t_list *stack2)
 {
