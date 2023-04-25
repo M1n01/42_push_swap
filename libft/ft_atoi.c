@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 10:57:14 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/24 23:27:30 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/25 23:04:07 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int	ft_atoi(const char *str)
 		if (!ft_isdigit(str[i]) || nbr < INT_MIN || INT_MAX < nbr)
 			error();
 		nbr = nbr * 10 + (str[i] - '0');
+		if ((nbr * 10 + (str[i] - '0')) / 10 != nbr)
+			error();
 		i++;
 	}
 	nbr *= sign;

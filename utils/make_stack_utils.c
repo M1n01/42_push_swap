@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 19:05:46 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/24 20:52:48 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/25 23:14:57 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ static void	sort(int *array, size_t size)
 		j = i + 1;
 		while (j < size)
 		{
+			if (array[i] == array[j])
+				malloc_error(array);
 			if (array[i] > array[j])
 				int_swap(array + i, array + j);
 			j++;
