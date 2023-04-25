@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 10:57:14 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/25 23:04:07 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/25 23:30:32 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ static void	error(void);
 
 int	ft_atoi(const char *str)
 {
-	int			sign;
-	size_t		i;
-	size_t		len;
-	long long	nbr;
+	int		sign;
+	size_t	i;
+	size_t	len;
+	int		nbr;
 
 	len = ft_strlen(str);
 	i = 0;
