@@ -1,12 +1,24 @@
 NAME = libft.a
 
 CC = cc
-INCDIR = ../include
 CFLAGS = -Wall -Wextra -Werror $(addprefix -I,$(INCDIR))
 
-SRCDIR = ./
+INCDIR	=	../include
+INC		=	$(INCDIR)/libft.h
 
-SRCS = $(shell find $(SRCDIR) -name "*.c" -type f | xargs)
+SRCS	=	ft_atoi.c \
+			ft_isdigit.c \
+			ft_memcpy.c \
+			ft_printf.c \
+			ft_putchar.c \
+			ft_putnbr.c \
+			ft_realloc.c \
+			ft_strchr.c \
+			ft_strcmp.c \
+			ft_strjoin.c \
+			ft_strlcpy.c \
+			ft_strlen.c \
+			get_next_line.c
 
 OBJS = $(SRCS:%.c=%.o)
 
