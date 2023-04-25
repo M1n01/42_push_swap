@@ -6,22 +6,13 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 23:21:44 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/24 21:13:34 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/25 16:00:25 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 #include "../include/utils.h"
 #include "../include/push_swap.h"
-
-void	find_val_and_pb(t_list *s1, t_list *s2, t_info *info, ssize_t val)
-{
-	long	step;
-
-	step = cal_steps(s1, find_ordinal(s1, val));
-	rotate_min_steps(s1, step, 'A', info);
-	record_command(s1, s2, info, PB);
-}
 
 void	find_max_and_pa(t_list *stack1, t_list *stack2, t_info *info)
 {
@@ -53,6 +44,18 @@ void	pb_and_split_half(t_list *s1, t_list *s2, t_info *info, ssize_t piv)
 void	pa_and_split_half(t_list *s1, t_list *s2, t_info *info, ssize_t piv)
 {
 	record_command(s1, s2, info, PA);
-	if (s1->next->ordinal >= piv)
+	if (s1->next->ordinal < piv)
 		record_command(s1, s2, info, RA);
+}
+
+void	pile_up_blocks(t_list *s1, t_list *s2, t_info *info, size_t size)
+{
+	size_t	push_size;
+
+	push_size = 0;
+	while (push_size < size)
+	{
+		find_max_and_pa(s1, s2, info);
+		push_size++;
+	}
 }

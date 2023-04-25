@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 00:11:08 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/24 21:12:56 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/25 15:59:42 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,10 @@ void	free_stack(t_list *stack);
 void	ans_optimize(t_info *info);
 
 void	find_max_and_pa(t_list *stack1, t_list *stack2, t_info *info);
-void	find_val_and_pb(t_list *s1, t_list *s2, t_info *info, ssize_t val);
 void	find_min_and_pb(t_list *stack1, t_list *stack2, t_info *info);
 
 void	pa_and_split_half(t_list *s1, t_list *s2, t_info *info, ssize_t piv);
 void	pb_and_split_half(t_list *s1, t_list *s2, t_info *info, ssize_t piv);
+void	pile_up_blocks(t_list *s1, t_list *s2, t_info *info, size_t size);
 
 #endif

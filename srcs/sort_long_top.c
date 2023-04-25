@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   top_sort.c                                         :+:      :+:    :+:   */
+/*   sort_long_top.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 20:40:25 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/24 21:18:34 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/25 16:04:20 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	top_sort(t_list *stack1, t_list *stack2, t_info *info)
 	size = stack_size(stack1) / 5;
 	while (push_count < size)
 	{
-		find_min_and_pb(stack1, stack2, info);
+		record_command(stack1, stack2, info, RRA);
+		pb_and_split_half(stack1, stack2, info, size / 2);
 		push_count++;
 	}
-	while (stack_size(stack2) > 0)
-		record_command(stack1, stack2, info, PA);
+	pile_up_blocks(stack1, stack2, info, size);
 }
