@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 13:21:58 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/24 21:52:03 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/26 11:29:15 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ int	*add_ans(t_info *info, int command)
 
 	ans = malloc(sizeof(int) * (info->turn + 1));
 	if (!ans)
-		malloc_error(ans);
+		ft_error(ans);
 	ft_memcpy(ans, info->ans, info->turn);
 	ans[info->turn] = command;
 	info->turn++;
 	info->pre = command;
-	safer_free(info->ans);
+	ft_free(info->ans);
 	return (ans);
 }
 

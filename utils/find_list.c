@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 12:49:11 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/24 20:52:39 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/26 11:07:38 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,6 @@ t_list	*find_max(t_list *stack)
 		stack = stack->next;
 	}
 	return (max);
-}
-
-t_list	*find_min(t_list *stack)
-{
-	t_list	*min;
-
-	min = stack->next;
-	while (stack->next->ordinal != -1)
-	{
-		if (min->ordinal > stack->next->ordinal)
-			min = stack->next;
-		stack = stack->next;
-	}
-	return (min);
 }
 
 t_list	*find_ordinal(t_list *stack, ssize_t value)

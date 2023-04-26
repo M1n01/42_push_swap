@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 08:53:25 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/24 20:52:51 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/26 11:24:27 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ t_list	*make_stack1(int ac, char *av[])
 		lstadd_tail(stack, array[i], coordinate[i]);
 		i++;
 	}
-	safer_free(array);
-	safer_free(coordinate);
+	ft_free(array);
+	ft_free(coordinate);
 	return (stack);
 }
 
@@ -42,7 +42,7 @@ t_list	*init_stack(void)
 
 	stack = malloc(sizeof(t_list));
 	if (stack == NULL)
-		malloc_error(stack);
+		ft_error(stack);
 	head = stack;
 	stack->prev = head;
 	stack->value = 0;
@@ -61,7 +61,7 @@ static void	lstadd_tail(t_list *stack, int value, ssize_t coodinate)
 	tail = find_tail(stack);
 	new = malloc(sizeof(t_list));
 	if (new == NULL)
-		malloc_error(new);
+		ft_error(new);
 	new->value = value;
 	new->ordinal = coodinate;
 	new->next = head;

@@ -6,26 +6,29 @@ CFLAGS = -Wall -Wextra -Werror $(addprefix -I,$(INCDIR))
 INCDIR	=	../include
 INC		=	$(INCDIR)/libft.h
 
-SRCS	=	ft_atoi.c \
-			ft_isdigit.c \
-			ft_memcpy.c \
-			ft_printf.c \
-			ft_putchar.c \
-			ft_putnbr.c \
-			ft_realloc.c \
-			ft_strchr.c \
-			ft_strcmp.c \
-			ft_strjoin.c \
-			ft_strlcpy.c \
-			ft_strlen.c \
-			get_next_line.c
+SRCDIR	=	.
+SRCS	=	$(SRCDIR)/ft_atoi.c \
+			$(SRCDIR)/ft_isdigit.c \
+			$(SRCDIR)/ft_memcpy.c \
+			$(SRCDIR)/ft_printf.c \
+			$(SRCDIR)/ft_putchar.c \
+			$(SRCDIR)/ft_putnbr.c \
+			$(SRCDIR)/ft_realloc.c \
+			$(SRCDIR)/ft_strchr.c \
+			$(SRCDIR)/ft_strcmp.c \
+			$(SRCDIR)/ft_strjoin.c \
+			$(SRCDIR)/ft_strlcpy.c \
+			$(SRCDIR)/ft_strlen.c \
+			$(SRCDIR)/ft_free.c \
+			$(SRCDIR)/ft_error.c \
+			$(SRCDIR)/get_next_line.c
 
 OBJS = $(SRCS:%.c=%.o)
 
+all: $(NAME)
+
 $(NAME): $(OBJS)
 		ar -rcs $(NAME) $(OBJS)
-
-all: $(NAME)
 
 clean:
 		$(RM) $(OBJS) $(B_OBJS)

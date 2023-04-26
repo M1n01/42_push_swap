@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 19:05:46 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/25 23:14:57 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/26 11:24:01 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	*make_array(int ac, char *av[])
 
 	array = malloc(sizeof(int) * (ac - 1));
 	if (array == NULL)
-		malloc_error(array);
+		ft_error(array);
 	i = 0;
 	while (i < ac - 1)
 	{
@@ -43,10 +43,10 @@ ssize_t	*compression(int *array, size_t	size)
 
 	array_cp = malloc(sizeof(int) * (size));
 	if (array_cp == NULL)
-		malloc_error(array_cp);
+		ft_error(array_cp);
 	coordinate = malloc(sizeof(size_t) * (size));
 	if (coordinate == NULL)
-		malloc_error(coordinate);
+		ft_error(coordinate);
 	i = 0;
 	while (i < size)
 	{
@@ -55,7 +55,7 @@ ssize_t	*compression(int *array, size_t	size)
 	}
 	sort(array_cp, size);
 	rank(array, array_cp, coordinate, size);
-	safer_free(array_cp);
+	ft_free(array_cp);
 	return (coordinate);
 }
 
@@ -71,7 +71,7 @@ static void	sort(int *array, size_t size)
 		while (j < size)
 		{
 			if (array[i] == array[j])
-				malloc_error(array);
+				ft_error(array);
 			if (array[i] > array[j])
 				int_swap(array + i, array + j);
 			j++;

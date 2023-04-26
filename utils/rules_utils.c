@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 10:54:43 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/24 20:53:01 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/26 11:29:29 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_list	*lstdelone_node(t_list *trash)
 	prev = trash->prev;
 	trash->next->prev = prev;
 	prev->next = trash->next;
-	safer_free(trash);
+	ft_free(trash);
 	return (prev->next);
 }
 
@@ -31,7 +31,7 @@ void	lstcpy(t_list *src, t_list *dest)
 
 	new = malloc(sizeof(t_list));
 	if (new == NULL)
-		malloc_error(new);
+		ft_error(new);
 	new->value = src->value;
 	new->ordinal = src->ordinal;
 	new->prev = dest;

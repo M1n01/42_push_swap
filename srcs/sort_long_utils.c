@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 23:21:44 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/25 16:00:25 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/26 11:14:02 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,11 @@ void	find_max_and_pa(t_list *stack1, t_list *stack2, t_info *info)
 	long	step;
 
 	max = find_max(stack2);
+	if (max == NULL)
+		return ;
 	step = cal_steps(stack2, max);
 	rotate_min_steps(stack2, step, 'B', info);
 	record_command(stack1, stack2, info, PA);
-}
-
-void	find_min_and_pb(t_list *stack1, t_list *stack2, t_info *info)
-{
-	long	step;
-
-	step = cal_steps(stack1, find_min(stack1));
-	rotate_min_steps(stack1, step, 'A', info);
-	record_command(stack1, stack2, info, PB);
 }
 
 void	pb_and_split_half(t_list *s1, t_list *s2, t_info *info, ssize_t piv)

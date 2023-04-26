@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:35:33 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/24 20:52:57 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/26 11:11:23 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	rotate_min_steps(t_list *stack, long step, char which, t_info *info)
 	}
 }
 
-ssize_t	count_rotate(t_list *stack, t_list *find)
+static ssize_t	count_rotate(t_list *stack, t_list *find)
 {
 	size_t	step;
 
@@ -53,7 +53,7 @@ ssize_t	count_rotate(t_list *stack, t_list *find)
 	return (step);
 }
 
-ssize_t	count_rev_rotate(t_list *stack, t_list *find)
+static ssize_t	count_rev_rotate(t_list *stack, t_list *find)
 {
 	size_t	step;
 

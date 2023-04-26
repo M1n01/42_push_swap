@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 00:11:08 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/25 15:59:42 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/26 11:22:56 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@ void	rev_rotate(t_list *stack);
 
 t_list	*lstdelone_node(t_list *trash);
 void	lstcpy(t_list *src, t_list *dest);
-void	malloc_error(void *p);
-void	safer_free(void *p);
 size_t	stack_size(t_list *stack);
 
 void	print_command(int command);
@@ -78,13 +76,11 @@ t_info	*init_info(void);
 t_info	*init_info_long_ver(void);
 void	free_info(t_info *cmd);
 
-ssize_t	count_rotate(t_list *stack, t_list *find);
 long	cal_steps(t_list *stack, t_list *find);
 void	rotate_min_steps(t_list *stack, long step, char which, t_info *info);
 
 t_list	*find_ordinal(t_list *stack, ssize_t value);
 t_list	*find_max(t_list *stack);
-t_list	*find_min(t_list *stack);
 
 void	command(t_list *stack1, t_list *stack2, int command);
 int		*add_ans(t_info *info, int command);
@@ -94,7 +90,6 @@ void	free_stack(t_list *stack);
 void	ans_optimize(t_info *info);
 
 void	find_max_and_pa(t_list *stack1, t_list *stack2, t_info *info);
-void	find_min_and_pb(t_list *stack1, t_list *stack2, t_info *info);
 
 void	pa_and_split_half(t_list *s1, t_list *s2, t_info *info, ssize_t piv);
 void	pb_and_split_half(t_list *s1, t_list *s2, t_info *info, ssize_t piv);

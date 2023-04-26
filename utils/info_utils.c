@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 22:52:28 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/24 20:52:44 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/26 11:29:52 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ t_info	*init_info(void)
 
 	info = malloc(sizeof(t_info));
 	if (!info)
-		malloc_error(info);
+		ft_error(info);
 	info->turn = LIMIT_SHORT;
 	info->tmp = malloc(sizeof(int) * (info->turn));
 	if (info->tmp == NULL)
-		malloc_error(info->tmp);
+		ft_error(info->tmp);
 	i = 0;
 	while (i < info->turn)
 	{
@@ -43,7 +43,7 @@ t_info	*init_info_long_ver(void)
 
 	info = malloc(sizeof(t_info));
 	if (!info)
-		malloc_error(info);
+		ft_error(info);
 	info->turn = 0;
 	info->tmp = NULL;
 	info->ans = NULL;
@@ -53,7 +53,7 @@ t_info	*init_info_long_ver(void)
 
 void	free_info(t_info *info)
 {
-	safer_free(info->tmp);
-	safer_free(info->ans);
-	safer_free(info);
+	ft_free(info->tmp);
+	ft_free(info->ans);
+	ft_free(info);
 }

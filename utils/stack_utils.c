@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:50:21 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/24 20:53:09 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/26 11:24:50 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	free_stack(t_list *stack)
 	{
 		tmp = stack;
 		stack = stack->next;
-		safer_free(tmp);
+		ft_free(tmp);
 	}
-	safer_free(stack);
+	ft_free(stack);
 }

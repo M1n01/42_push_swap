@@ -6,7 +6,7 @@
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 15:14:49 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/24 20:27:13 by minabe           ###   ########.fr       */
+/*   Updated: 2023/04/26 11:22:45 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # endif
 
 int		ft_atoi(const char *str);
+void	ft_error(void *p);
+void	ft_free(void *p);
 int		ft_isdigit(int c);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 int		ft_printf(const char *format, ...);

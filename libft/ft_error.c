@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minabe <minabe@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/05 15:43:38 by minabe            #+#    #+#             */
-/*   Updated: 2023/04/26 11:33:02 by minabe           ###   ########.fr       */
+/*   Created: 2023/04/26 11:21:07 by minabe            #+#    #+#             */
+/*   Updated: 2023/04/26 11:30:14 by minabe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-int	ft_isdigit(int c)
+void	ft_error(void *p)
 {
-	if ('0' <= c && c <= '9')
-		return (1);
-	return (0);
+	ft_free(p);
+	ft_printf("Error\n");
+	exit(1);
 }

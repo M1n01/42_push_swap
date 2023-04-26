@@ -4,7 +4,8 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror $(addprefix -I,$(INCDIR))
 
 INCDIR	=	./include
-INC		=	$(INCDIR)/utils.h \
+INC		=	$(INCDIR)/libft.h \
+			$(INCDIR)/utils.h \
 			$(INCDIR)/push_swap.h
 
 SRCDIR	=	./srcs
@@ -25,7 +26,6 @@ UTILS	=	$(UTILDIR)/find_list.c \
 			$(UTILDIR)/rules.c \
 			$(UTILDIR)/command.c \
 			$(UTILDIR)/stack_utils.c \
-			$(UTILDIR)/error.c \
 			$(UTILDIR)/rotate_utils.c \
 			$(UTILDIR)/ans_utils.c \
 			$(UTILDIR)/rules_utils.c \
